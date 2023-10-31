@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+p {
+  font-size: larger;
+  color: #fff;
+  padding-left: 15px;
+}
+nav {
+  height: 50px;
+  width: auto;
+  background-color: black;
+}
+input[type="search"] {
+  float: right;
+  /* margin:0; */
+}
