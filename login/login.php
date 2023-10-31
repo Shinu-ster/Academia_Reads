@@ -1,5 +1,11 @@
 <?php
-    include './database/dbconnect.php'
+    include '../database/dbconnect.php';
+    session_start();
+    if(isset($_SESSION['id'])){
+        //if session exists redirect to home page
+        header('location:http://localhost/4thsemProj/pages/addpdf.php');
+        exit(); 
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +30,12 @@
             if($num>0){
                 //if exists create session and 
                 //redirect to home page
+                
+                $row = mysqli_fetch_assoc($result);
+                $_SESSION['id']=$row['id'];
+                $_SESSION['is_admin'] = $row['is_admin'];
                 echo "found";
+                 header('location:http://localhost/4thsemProj/pages/addpdf.php');
 
             }else{
                 //if user doesn't exists prompt

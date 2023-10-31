@@ -1,5 +1,13 @@
 <?php
     include '../database/dbconnect.php';
+    session_start();
+    $profile = $_SESSION['id'];
+    if($profile == true){
+        //allow to use this page only if session exists
+        // echo "session exists";
+    }else{
+        header('location:http://localhost/4thsemProj/login/login.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +37,7 @@
         $temp = $_FILES['file']['tmp_name'];
         $folder = "../pdf/" . $file;
         if (move_uploaded_file($temp, $folder)) {
-            echo "file moved";
+            // echo "file moved";
         } else {
             echo "file not moved";
         }
@@ -38,13 +46,13 @@
         $foldercover =  '../cover/' . $cover;
       
         if (move_uploaded_file($tempcover, $foldercover)) {
-            echo "file moved";
+            // echo "file moved";
         } else {
             echo "file not moved";
         }
  
    
-   $sql = "INSERT INTO pdf (name,description,file,cover) VALUES ('$name','$desc','$folder','$foldercover')";
+   $sql = "INSERT INTO pdf (name,description,file,cover,id) VALUES ('$name','$desc','$folder','$foldercover','$profile')";
   
    $res = mysqli_query($conn, $sql);
    if ($res) {
