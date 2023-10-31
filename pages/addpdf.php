@@ -25,7 +25,7 @@
         $file = $_FILES['file'];
         $cover = $_FILES['cover'];
     }    
-   
+   $sql = "INSERT INTO pdf (name,description,file,cover) VALUES ('$name','$desc','$file','$cover')";
    ?>
 </body>
 </html>
