@@ -2,12 +2,17 @@
     include '../database/dbconnect.php';
     session_start();
     $profile = $_SESSION['id'];
+    $id = $_GET['view'];
     if($profile == true){
         //allow to use this page only if session exists
         // echo "session exists";
     }else{
         header('location:http://localhost/4thsemProj/login/login.php');
     }
+    $sql = "SELECT * FROM pdf where f_id = $id";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +22,8 @@
     <title>Document</title>
 </head>
 <body>
-<embed src="../pdf/Untitled 1.pdf" type="application/pdf" width="1000px" height="600px" />
+<embed src="<?php
+    echo $row['file'];
+?>" type="application/pdf" width="1260px" height="600px" />
 </body>
 </html>

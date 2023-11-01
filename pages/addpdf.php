@@ -50,7 +50,7 @@
         } else {
             echo "file not moved";
         }
- 
+        echo $profile;
    
    $sql = "INSERT INTO pdf (name,description,file,cover,id) VALUES ('$name','$desc','$folder','$foldercover','$profile')";
   

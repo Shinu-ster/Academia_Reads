@@ -20,7 +20,10 @@
     ?>
     <div class="wrapper">
         <div class="image">
-    <img src="<?php echo $row['cover']?>"alt="" srcset="" height="100px"><br><br>
+            <a href="view.php?view='<?php echo $row['f_id'];?>'">
+    <img src="<?php echo $row['cover']?>"alt="" srcset="" height="100px">
+    </a>
+    <br><br>
      <p><?php
            echo $row['name'];
         ?>
