@@ -1,5 +1,11 @@
 <?php
-    include './database/dbconnect.php'
+    include '../database/dbconnect.php';
+    session_start();
+    if(isset($_SESSION['id'])){
+        //if session exists redirect to home page
+        header('location:http://localhost/4thsemProj/pages/addpdf.php');
+        exit(); 
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,8 +31,8 @@
         if($result){
           //redirect to login
           header('location:http://localhost/4thsemProj/login/login.php');
-        }else{
-          echo '<script>alert("Enter valid information")</script>';
+        } else {
+            echo "Error: " . mysqli_error($conn);
         }
     }
     ?>
