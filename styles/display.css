@@ -1,0 +1,15 @@
+*{
+    margin:0;
+    padding:0;
+}
+.wrapper{
+    margin:10px;
+    background-color: dodgerblue;
+    padding:10px;
+    display:flex;
+    gap:10px;
+ 
+}
+p{
+    text-transform: uppercase;
+}
