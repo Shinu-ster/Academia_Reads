@@ -11,6 +11,9 @@
 </head>
 <body>
     <?php
+    include_once '../components/navbar.php';
+    ?>
+    <?php
     $sql = "SELECT * FROM pdf";
     $result = mysqli_query($conn,$sql);
     $num = mysqli_num_rows($result);
@@ -27,7 +30,7 @@
      <p><?php
            echo $row['name'];
         ?>
-        </p>
+        </p>    
     </div>
        
         <br>

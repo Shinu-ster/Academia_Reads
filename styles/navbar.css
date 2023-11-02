@@ -1,0 +1,13 @@
+nav {
+  height: 50px;
+  width: auto;
+  background-color: black;
+  margin-bottom: 10px;
+}
+input[type="search"] {
+  float: right;
+  /* margin:0; */
+}
+nav p {
+  color: white;
+}

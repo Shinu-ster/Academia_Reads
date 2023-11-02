@@ -18,10 +18,9 @@
     <link rel="stylesheet" href="../styles/home.css">
 </head>
 <body>
-    <nav>
-        <p>HOME Page</p>
-    <input type="search" name="" id="">
-</nav>
+   <?php
+   include_once '../components/navbar.php';
+   ?>
 <form action="" method="post" enctype="multipart/form-data">
    Name: <input type="text" name="name" id=""><br>
    Description: <textarea name="desc" id="" cols="30" rows="10">Add Description</textarea><br>
