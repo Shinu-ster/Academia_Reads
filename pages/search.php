@@ -1,6 +1,7 @@
 <?php
-    include '../database/dbconnect.php';
-    session_start();
+include '../database/dbconnect.php';
+session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,20 +10,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../styles/display.css">
+
 </head>
 <body>
-    <?php
+<?php
     include_once '../components/navbar.php';
     ?>
     <?php
-    $sql = "SELECT * FROM pdf";
+    $profile=$_SESSION['search'];
+    // echo $profile;
+    $sql= "SELECT * FROM pdf WHERE name = '$profile'";
     $result = mysqli_query($conn,$sql);
     $num = mysqli_num_rows($result);
+    // echo $num;
     if($num>0){
-       while( $row = mysqli_fetch_assoc($result)){;
-    
+       while( $row = mysqli_fetch_assoc($result)){
     ?>
-    <div class="wrapper">
+     <div class="wrapper">
         <div class="image">
             <a href="view.php?view='<?php echo $row['f_id'];?>'">
     <img src="<?php echo $row['cover']?>"alt="" srcset="" height="100px">
@@ -45,19 +49,6 @@
     <?php
     }
 }
-if(isset($_POST['search'])){
-    $search = $_POST['search'];
-    echo $search;
-    $_SESSION['search'] = $search;
-   
-    // echo $search;
-    header('location:http://localhost/4thsemProj/pages/search.php');
-}
-
-    ?>
-  
-   
-
-  
+?>
 </body>
 </html>

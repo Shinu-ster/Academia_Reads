@@ -8,8 +8,10 @@
 </head>
 <body>
 <nav>
+    <form action="" method="post">
     <p >HOME Page</p>
-    <input type="search" name="" id="">
+    <input type="search" name="search" id="">
+    </form>
 </nav>
 </body>
 </html>
