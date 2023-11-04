@@ -1,6 +1,13 @@
 <?php
     include '../database/dbconnect.php';
     session_start();
+    $profile = $_SESSION['id'];
+    if($profile == true){
+        //allow to use this page only if session exists
+        // echo "session exists";
+    }else{
+        header('location:http://localhost/4thsemProj/login/login.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +45,23 @@
         <div class="description">
         <?php
             echo $row['description'];
-        ?></div>
+        ?>
+        <br>
+        <br>
+        <a href="addpdf.php?edit='<?php
+            echo $row['f_id'];
+        ?>'">
+            <button>
+                Edit
+            </button>
+        </a>    
+        &nbsp;
+        
+            <button type='submit' name="delete">
+                Delete
+            </button>
+       
+    </div>
         <br>
         
     </div>

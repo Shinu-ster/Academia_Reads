@@ -1,7 +1,13 @@
 <?php
 include '../database/dbconnect.php';
 session_start();
-
+$profile = $_SESSION['id'];
+if($profile == true){
+    //allow to use this page only if session exists
+    // echo "session exists";
+}else{
+    header('location:http://localhost/4thsemProj/login/login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
