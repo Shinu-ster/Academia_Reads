@@ -48,7 +48,7 @@
         ?>
         <br>
         <br>
-        <a href="addpdf.php?edit='<?php
+        <a href="edit.php?edit='<?php
             echo $row['f_id'];
         ?>'">
             <button>
