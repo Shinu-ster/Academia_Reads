@@ -1,6 +1,6 @@
 *{
-    margin:0;
-    padding:0;
+    margin:0px;
+    padding:0px;
 }
 .wrapper{
     margin:10px;
@@ -8,8 +8,7 @@
     padding:10px;
     display:flex;
     gap:10px;
- 
 }
-p{
+div p{
     text-transform: uppercase;
 }

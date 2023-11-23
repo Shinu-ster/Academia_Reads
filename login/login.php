@@ -35,7 +35,7 @@
                 $_SESSION['id']=$row['id'];
                 $_SESSION['is_admin'] = $row['is_admin'];
                 echo "found";
-                 header('location:http://localhost/4thsemProj/pages/addpdf.php');
+                 header('location:http://localhost/4thsemProj/pages/display.php');
 
             }else{
                 //if user doesn't exists prompt
