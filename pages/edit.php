@@ -13,13 +13,18 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/edit.css">
 </head>
 <body>
 <?php    
    include_once '../components/navbar.php';
    ?>
-<form action="" method="post" enctype="multipart/form-data">
+    <div class="container">
+
+    <div class="prev">
     <table>
+        <caption>Old File</caption>
         <tr>
             <td> 
                 Name:
@@ -62,13 +67,55 @@ session_start();
                 <img  name="cover" id="" src="
                     <?php
                         echo $row1['cover'];
-                    ?>">
+                    ?>"
+                    width="220px" height="220px"
+                    >
             </td>
         </tr>
     </table>
-  
-   <button type="submit" name="submit">Submit</button>
-   </form>
+        </div>
+        <div class="new">
+<form action="" method="post" enctype="multipart/form-data">
+
+            <table>
+                <caption>New file</caption>
+                <tr>
+                    <td>
+                        Name
+                    </td>
+                    <td>
+                        <input type="text" name="" id="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Description
+                    </td>
+                    <td>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>New Upload</td>
+                    <td>
+                        <input type="file" name="" id="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        New Cover 
+                    </td>
+                    <td>
+                        <input type="file" name="" id="">
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" name="submit">Submit Changes</button>
+            </form>
+        </div>
+    </div>
+   
+   
 </body>
 </html>
 

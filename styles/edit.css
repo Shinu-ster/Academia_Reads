@@ -1,0 +1,14 @@
+.container{
+    background-color: cadetblue;
+    display:flex;
+    padding:10px;
+    gap:10px;
+}
+.container div{
+    background-color: cornflowerblue;
+    width: 700px;
+}
+table{
+   padding:20px; 
+   border-spacing: 30px;
+}

@@ -8,10 +8,13 @@
 </head>
 <body>
 <nav>
-    <form action="" method="post">
-    <p >HOME Page</p>
-    <input type="search" name="search" id="">
-    </form>
+    
+    <a href="../pages/display.php" >HOME Page</a>
+
+    <p class="left">
+
+    </p>
+   
 </nav>
 </body>
 </html>
