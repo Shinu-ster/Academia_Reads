@@ -22,20 +22,54 @@
    <?php    
    include_once '../components/navbar.php';
    ?>
-<form action="" method="post" enctype="multipart/form-data">
-   Name: <input type="text" name="name" id="" value="<?php
-    echo $row1['name'];
-   ?>"><br>
-   Description: <textarea name="desc" id="" cols="30" rows="10"><?php 
-    if($f_id == true){
-   echo $row1['description']; }else{ ?>
-    Add Description <?php
-   }
-    ?>
-</textarea><br>
-<br>
-   File: <input type="file" name="file" id=""><br>
-   Cover Photo: <input type="file" name="cover" id=""><br>
+   <div class="container">
+   <form action="" method="post" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td>
+            Name:
+            </td>
+            <td>
+            <input type="text" name="name" id="" value="
+                <?php
+                    echo $row1['name'];
+                ?>"
+            >
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Description:
+            </td>
+            <td>
+            <textarea name="desc" id="" cols="30" rows="10">
+                <?php 
+                    if($f_id == true){
+                        echo $row1['description']; }else{ ?>
+                    Add Description 
+                <?php
+                }
+                ?>
+            </textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                File:
+            </td>
+            <td>
+                <input type="file" name="file" id="">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Cover Photo:
+            </td>
+            <td>
+                <input type="file" name="cover" id="">
+            </td>
+        </tr>
+    </table>
    <button type="submit" name="submit">Submit</button>
    </form>
    <?php
@@ -101,5 +135,6 @@
 // }
 
    ?>
+   </div>
 </body>
 </html>

@@ -2,9 +2,13 @@
   margin: 0;
   padding: 0;
 }
-p {
+
+div p {
   font-size: larger;
   color: #fff;
   padding-left: 15px;
 }
-
+.container{
+  margin:10px;
+  
+}
