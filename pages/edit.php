@@ -13,8 +13,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../styles/global.css">
-    <link rel="stylesheet" href="../styles/edit.css">
+    <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../styles/edit.css?v=<?php echo time(); ?>">
 </head>
 <body>
 <?php    
