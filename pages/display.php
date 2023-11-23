@@ -32,20 +32,32 @@
     <div class="wrapper">
         <div class="image">
             <a href="view.php?view='<?php echo $row['f_id'];?>'">
-    <img src="<?php echo $row['cover']?>"alt="" srcset="" height="100px">
-    </a>
+                <img src="<?php echo $row['cover']?>"alt="" srcset="" height="100px">
+            </a>
     <br><br>
-     <p><?php
-           echo $row['name'];
-        ?>
-        </p>    
-    </div>
+            <p>
+                <?php
+                echo $row['name'];
+                ?>
+            </p>    
+        </div>
        
         <br>
         <div class="description">
         <?php
             echo $row['description'];
         ?>
+        <br>
+        <p>Added by: <?php
+        
+            $id = $row['id'];
+            $sql1 = "SELECT * from user where id = $id";
+            $result1 = mysqli_query($conn,$sql1);
+            $row1 = mysqli_fetch_assoc($result1);
+
+            echo $row1['username'];
+
+        ?></p>
         <br>
         <br>
         <a href="edit.php?edit='<?php

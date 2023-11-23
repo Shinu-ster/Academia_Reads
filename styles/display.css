@@ -12,3 +12,9 @@
 div p{
     text-transform: uppercase;
 }
+button{
+    padding:5px;
+}
+.wrapper a {
+    text-decoration: none; 
+}
