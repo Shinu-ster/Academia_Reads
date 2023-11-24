@@ -14,8 +14,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Document</title> <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this pdf?");
+        }
+    </script>
     <link rel="stylesheet" href="../styles/display.css?v=<?php echo time(); ?>">
+
 </head>
 <body>
     <?php
@@ -68,10 +73,14 @@
             </button>
         </a>    
         &nbsp;
-        
-            <button type='submit' name="delete">
-                Delete
-            </button>
+            <a href="../crud/delete.php?delete_key='
+                 <?php echo $row['f_id'];?>
+            '" onclick="confirmDelete();">
+                <button>
+                    Delete
+                </button>
+            </a>
+           
        
     </div>
         <br>

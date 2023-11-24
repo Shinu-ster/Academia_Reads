@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../styles/navbar.css?v=<?php echo time(); ?>">
-    
+     <script>
+        function confirmLogout() {
+            return confirm("Are you sure you want to log out?");
+        }
+    </script>
 </head>
 <body>
 <nav>
@@ -15,7 +19,7 @@
    </p>
 
     <p class="left">
-    <a href="../login/logout.php">Log out</a>
+    <a href="../login/logout.php" onclick="return confirmLogout();">Log out</a>
     </p>
     <p class="left">
     <a href="../pages/addpdf.php">Add pdf</a>
