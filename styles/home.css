@@ -10,5 +10,7 @@ div p {
 }
 .container{
   margin:10px;
-  
+}
+td{
+  padding:10px;
 }

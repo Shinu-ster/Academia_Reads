@@ -36,7 +36,7 @@
     ?>
     <div class="wrapper">
         <div class="image">
-            <a href="view.php?view='<?php echo $row['f_id'];?>'">
+            <a href="../crud/view.php?view='<?php echo $row['f_id'];?>'">
                 <img src="<?php echo $row['cover']?>"alt="" srcset="" height="100px">
             </a>
     <br><br>
@@ -65,7 +65,7 @@
         ?></p>
         <br>
         <br>
-        <a href="edit.php?edit='<?php
+        <a href="../crud/edit.php?edit='<?php
             echo $row['f_id'];
         ?>'">
             <button>

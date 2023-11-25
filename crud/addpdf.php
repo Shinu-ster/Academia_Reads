@@ -30,7 +30,7 @@
             Name:
             </td>
             <td>
-            <input type="text" name="name" id="" value="
+            <input type="text" name="name" id="" required value="
                 <?php
                     echo $row1['name'];
                 ?>"
@@ -42,7 +42,7 @@
                 Description:
             </td>
             <td>
-            <textarea name="desc" id="" cols="30" rows="10">
+            <textarea name="desc" id="" cols="30" required rows="10">
                 <?php 
                     if($f_id == true){
                         echo $row1['description']; }else{ ?>
@@ -58,7 +58,7 @@
                 File:
             </td>
             <td>
-                <input type="file" name="file" id="">
+                <input type="file" name="file" id="" required>
             </td>
         </tr>
         <tr>
@@ -66,7 +66,7 @@
                 Cover Photo:
             </td>
             <td>
-                <input type="file" name="cover" id="">
+                <input type="file" name="cover" id="" required>
             </td>
         </tr>
     </table>
@@ -100,7 +100,7 @@
   
    $res = mysqli_query($conn, $sql);
    if ($res) {
-       echo "Inserted successfully";
+       header('location:http://localhost/4thsemProj/pages/display.php');
    } else {
        echo "Error: " . mysqli_error($conn);
    }

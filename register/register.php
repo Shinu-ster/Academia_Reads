@@ -3,7 +3,7 @@
     session_start();
     if(isset($_SESSION['id'])){
         //if session exists redirect to home page
-        header('location:http://localhost/4thsemProj/pages/addpdf.php');
+        header('location:http://localhost/4thsemProj/crud/addpdf.php');
         exit(); 
     }
 ?>

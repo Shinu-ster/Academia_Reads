@@ -22,7 +22,7 @@
     <a href="../login/logout.php" onclick="return confirmLogout();">Log out</a>
     </p>
     <p class="left">
-    <a href="../pages/addpdf.php">Add pdf</a>
+    <a href="../crud/addpdf.php">Add pdf</a>
     </p>
 </nav>
 </body>
