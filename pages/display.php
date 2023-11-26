@@ -91,7 +91,7 @@ if ($profile == true) {
                 </div>
             </div>
 
-            <br>
+         
 
 <?php
                     }
