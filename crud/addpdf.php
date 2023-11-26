@@ -25,34 +25,28 @@
    <div class="container">
    <form action="" method="post" enctype="multipart/form-data">
     <table>
-        <tr>
-            <td>
-            Name:
-            </td>
-            <td>
-            <input type="text" name="name" id="" required value="
-                <?php
-                    echo $row1['name'];
-                ?>"
-            >
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Description:
-            </td>
-            <td>
-            <textarea name="desc" id="" cols="30" required rows="10">
-                <?php 
-                    if($f_id == true){
-                        echo $row1['description']; }else{ ?>
-                    Add Description 
-                <?php
-                }
-                ?>
-            </textarea>
-            </td>
-        </tr>
+    <tr>
+    <td>
+        Name:
+    </td>
+    <td>
+        <input type="text" name="name" id="" required value="<?php echo $row1['name']; ?>">
+    </td>
+</tr>
+<tr>
+    <td>
+        Description:
+    </td>
+    <td>
+        <textarea name="desc" id="" cols="30" required rows="10"><?php 
+            if ($f_id == true) {
+                echo $row1['description'];
+            } else {
+                echo "Add Description";
+            }
+        ?></textarea>
+    </td>
+</tr>
         <tr>
             <td>
                 File:
