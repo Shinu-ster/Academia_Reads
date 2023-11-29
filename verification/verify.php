@@ -33,11 +33,11 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
         // echo $profile;
         $count = $row['count'];
 
-        echo "Count: " . $count;
+        echo "Count <sup>" . $count. "</sup>";
     } else {
         echo "Error: " . mysqli_error($conn);
     }
-
+// echo "Profile" .$profile;
     ?>
 </body>
 
