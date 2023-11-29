@@ -56,14 +56,11 @@ if ($profile == true) {
                     ?>
                     <br>
                     <p>Added by: <?php
-
                                     $id = $row['id'];
                                     $sql1 = "SELECT * from user where id = $id";
                                     $result1 = mysqli_query($conn, $sql1);
                                     $row1 = mysqli_fetch_assoc($result1);
-
                                     echo $row1['username'];
-
                                     ?></p>
                     <?php
                     if (
@@ -91,22 +88,22 @@ if ($profile == true) {
                 </div>
             </div>
 
-         
 
-<?php
-                    }
-                }
-            
-            if (isset($_POST['search'])) {
-                $search = $_POST['search'];
-                echo $search;
-                $_SESSION['search'] = $search;
 
-                // echo $search;
-                header('location:http://localhost/4thsemProj/pages/search.php');
-            }
+    <?php
+        }
+    }
 
-?>
+    if (isset($_POST['search'])) {
+        $search = $_POST['search'];
+        echo $search;
+        $_SESSION['search'] = $search;
+
+        // echo $search;
+        header('location:http://localhost/4thsemProj/pages/search.php');
+    }
+
+    ?>
 
 
 
