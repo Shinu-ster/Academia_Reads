@@ -76,7 +76,7 @@ if ($profile == true) {
                         </a>
                         <a href="../crud/delete.php?delete_key='
                  <?php echo $row['f_id']; ?>
-            '" onclick="confirmDelete();">
+            '" onclick=" return confirmDelete();">
                             <button>
                                 Delete
                             </button>
