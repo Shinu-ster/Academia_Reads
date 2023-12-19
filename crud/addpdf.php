@@ -70,7 +70,7 @@
     
    if (isset($_POST['submit'])) {
         $name = $_POST['name'];
-        $desc = $_POST['desc'];
+        $desc = mysqli_real_escape_string($conn, $_POST['desc']);
         $file = $_FILES['file']['name'];
         $temp = $_FILES['file']['tmp_name'];
         $folder = '../pdfs/' . $file;
@@ -99,35 +99,6 @@
        echo "Error: " . mysqli_error($conn);
    }
 } 
-// if (isset($_POST['edit'])) {
-//     $name = $_POST['name'];
-//     $desc = $_POST['desc'];
-//     $file = $_FILES['file']['name'];
-//     $temp = $_FILES['file']['tmp_name'];
-//     $folder = "../pdf/" . $file;
-//     if (move_uploaded_file($temp, $folder)) {
-//         // echo "file moved";
-//     } else {
-//         echo "file not moved";
-//     }
-//     $cover = $_FILES['cover']['name'];
-//     $tempcover = $_FILES['cover']['tmp_name'];
-//     $foldercover =  '../cover/' . $cover;
-  
-//     if (move_uploaded_file($tempcover, $foldercover)) {
-//         // echo "file moved";
-//     } else {
-//         echo "file not moved";
-//     }
-//     $sql2 = "UPDATE `pdf` SET `name`='$name',`description`='$desc',`file`='$folder',`cover`='$foldercover' WHERE `f_id` = '$f_id'";
-//     $res2 = mysqli_query($conn, $sql2);
-//     if ($res2) {
-//         echo "Updated successfully";
-//     } else {
-//         echo "Error: " . mysqli_error($conn);
-//     }
-// }
-
    ?>
    </div>
 </body>
