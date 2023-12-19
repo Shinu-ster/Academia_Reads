@@ -9,11 +9,28 @@
         exit; // Add exit after the header to stop script execution
     }
     $delkey = $_GET['delete_key'];
-    echo $delkey;
-    $sql = "DELETE FROM `pdf` WHERE f_id = $delkey";
-    $res = mysqli_query($conn,$sql);   
+
+    $query = "SELECT * FROM pdf where f_id = $delkey";
+    $result = mysqli_query($conn,$query);
+    $row =  mysqli_fetch_assoc($result);
+
+    // Delete the file from the 'pdf' folder
+    $pdfFilePath = $row['file'];
+    if(file_exists($pdfFilePath)){
+        unlink($pdfFilePath);
+    }
+
+    // Delete the file from 'cover' folder
+    $coverFilePath = $row['cover'];
+    if (file_exists($coverFilePath)) {
+        unlink($coverFilePath);
+    }
+    $deleteQuery = "DELETE FROM `pdf` WHERE f_id = $delkey";
+    $res = mysqli_query($conn,$deleteQuery);   
     if($res){
         header('location:http://localhost/4thsemProj/pages/display.php');
         exit;
+    }else{
+        echo "Invalid request!";
     }
 ?>
