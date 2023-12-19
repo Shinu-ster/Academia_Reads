@@ -26,8 +26,7 @@ if($id){
         $row = mysqli_fetch_assoc($res1);
         // echo $id;
         $count = $row['count'];
-
-        // echo "Count <sup>" . $count. "</sup>";
+        
     } else {
         echo "Error: " . mysqli_error($conn);
     }
@@ -47,9 +46,32 @@ if($id){
     <p class="left">
     <a href="../crud/addpdf.php">Add pdf</a>
     </p>
-    <p class="left">
+    <?php
+        $adminsql = "SELECT * FROM user WHERE id = $id";
+        $re = mysqli_query($conn, $adminsql);
+        if ($re) {
+            $row = mysqli_fetch_assoc($re);
+            // echo $id;
+            $is_admin = $row['is_admin'];
+            if ($is_admin == '1') {
+?>
+         <p class= "left">
+                <a href="../admin/adminverify.php">Pdf Verification<sup><?php echo $count?></sup></a>
+                </p>
+<?php
+            }
+         else {
+            
+            ?>
+            <p class="left">
     <a href="../verification/verify.php">Pdf verification<sup><?php echo $count?></sup></a>
     </p>
+    <?php
+         }
+        }
+
+    ?>
+    
 </nav>
 </body>
 </html>
