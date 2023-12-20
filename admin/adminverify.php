@@ -18,7 +18,6 @@ if ($_SESSION['is_admin'] = 5 && isset($_SESSION['id'])) {
     <title>Document</title>
     <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../styles/table.css?v=<?php echo time(); ?>">
-
 </head>
 
 <body>
@@ -47,15 +46,37 @@ if ($_SESSION['is_admin'] = 5 && isset($_SESSION['id'])) {
                         <img src="<?php echo $row['cover']; ?>" alt="" srcset="" height="20px" width="20px">
                     </td>
                     <td>
-                        <button>Approve</button>
-                        <button>Decline</button>
+                        <form action="" method="post">
+                        <input type="hidden" name="pdf_id" value="<?php echo $row['f_id']; ?>">
+                        <input type="submit" value="Approve" name="approve" onclick="return approvepdf($row['f_id']);">
+                        <input type="submit" value="Decline" name=""    >
+                        </form>
                     </td>
                 </tr>
         <?php
             }
-        }
+        } 
         ?>
     </table>
+    
+
+    <?php
+if (isset($_POST['approve'])) {
+    
+    if (isset($_POST['pdf_id'])) {
+        $pdf_id = $_POST['pdf_id'];
+        $approvesql = "UPDATE pdf SET is_verify= '1' WHERE f_id = $pdf_id";
+        $approveres = mysqli_query($conn, $approvesql);
+        if($res){
+            echo 'Approved pdf';
+        }
+        
+        
+    } else {
+        echo "Error: PDF ID not set.";
+    }
+}
+?>
 </body>
 
 </html>

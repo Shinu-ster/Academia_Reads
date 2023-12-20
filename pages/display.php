@@ -30,7 +30,7 @@ if ($profile == true) {
     include_once '../components/navbar.php';
     ?>
     <?php
-    $sql = "SELECT * FROM pdf";
+    $sql = "SELECT * FROM pdf WHERE is_verify = '1'";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
     if ($num > 0) {
