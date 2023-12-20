@@ -23,22 +23,23 @@ if ($_SESSION['is_admin'] = 5 && isset($_SESSION['id'])) {
 <body>
     <?php
     include_once '../components/navbar.php'; ?>
-    <table border=1>
-        <tr>
 
-            <th>Name</th>
-            <th>Description</th>
-            <th>Cover</th>
-            <th>Verify</th>
-        </tr>
+    <?php
+    $sql = "SELECT * FROM pdf where is_verify = 0";
+    $result = mysqli_query($conn, $sql);
+    $num = mysqli_num_rows($result);
+    if ($num > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+    ?>
+            <table border=1>
+                <tr>
 
-        <?php
-        $sql = "SELECT * FROM pdf where is_verify = 0";
-        $result = mysqli_query($conn, $sql);
-        $num = mysqli_num_rows($result);
-        if ($num > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-        ?>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Cover</th>
+                    <th>Verify</th>
+                </tr>
+
                 <tr>
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['description']; ?></td>
@@ -47,36 +48,38 @@ if ($_SESSION['is_admin'] = 5 && isset($_SESSION['id'])) {
                     </td>
                     <td>
                         <form action="" method="post">
-                        <input type="hidden" name="pdf_id" value="<?php echo $row['f_id']; ?>">
-                        <input type="submit" value="Approve" name="approve" onclick="return approvepdf($row['f_id']);">
-                        <input type="submit" value="Decline" name=""    >
+                            <input type="hidden" name="pdf_id" value="<?php echo $row['f_id']; ?>">
+                            <input type="submit" value="Approve" name="approve" onclick="return approvepdf($row['f_id']);">
+                            <input type="submit" value="Decline" name="">
                         </form>
                     </td>
                 </tr>
-        <?php
-            }
-        } 
-        ?>
-    </table>
-    
-
-    <?php
-if (isset($_POST['approve'])) {
-    
-    if (isset($_POST['pdf_id'])) {
-        $pdf_id = $_POST['pdf_id'];
-        $approvesql = "UPDATE pdf SET is_verify= '1' WHERE f_id = $pdf_id";
-        $approveres = mysqli_query($conn, $approvesql);
-        if($res){
-            echo 'Approved pdf';
+            <?php
         }
-        
-        
     } else {
-        echo "Error: PDF ID not set.";
+            ?>
+            <h7>NO PDFs TO APPROVE YET</h7>
+        <?php
     }
-}
-?>
+        ?>
+            </table>
+
+
+            <?php
+            if (isset($_POST['approve'])) {
+
+                if (isset($_POST['pdf_id'])) {
+                    $pdf_id = $_POST['pdf_id'];
+                    $approvesql = "UPDATE pdf SET is_verify= '1' WHERE f_id = $pdf_id";
+                    $approveres = mysqli_query($conn, $approvesql);
+                    if ($res) {
+                        echo 'Approved pdf';
+                    }
+                } else {
+                    echo "Error: PDF ID not set.";
+                }
+            }
+            ?>
 </body>
 
 </html>
