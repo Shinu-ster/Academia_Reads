@@ -28,18 +28,25 @@ if ($_SESSION['is_admin'] = 5 && isset($_SESSION['id'])) {
     $sql = "SELECT * FROM pdf where is_verify = 0";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
-    if ($num > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
+    // if ($num > 0) {
+    // while ($row = mysqli_fetch_assoc($result)) {
     ?>
-            <table border=1>
-                <tr>
+    <?php
+    if ($num == 0) :
+    ?>
+        <p>No PDFs to Approve yet</p>
+    <?php else : ?>
+        <table border=1>
+            <tr>
 
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Cover</th>
-                    <th>Verify</th>
-                </tr>
-
+                <th>Name</th>
+                <th>Description</th>
+                <th>Cover</th>
+                <th>Verify</th>
+            </tr>
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) :
+            ?>
                 <tr>
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['description']; ?></td>
@@ -55,31 +62,29 @@ if ($_SESSION['is_admin'] = 5 && isset($_SESSION['id'])) {
                     </td>
                 </tr>
             <?php
-        }
-    } else {
+            endwhile;
             ?>
-            <h7>NO PDFs TO APPROVE YET</h7>
-        <?php
-    }
-        ?>
-            </table>
 
+        </table>
+    <?php
+    endif;
+    ?>
 
-            <?php
-            if (isset($_POST['approve'])) {
+    <?php
+    if (isset($_POST['approve'])) {
 
-                if (isset($_POST['pdf_id'])) {
-                    $pdf_id = $_POST['pdf_id'];
-                    $approvesql = "UPDATE pdf SET is_verify= '1' WHERE f_id = $pdf_id";
-                    $approveres = mysqli_query($conn, $approvesql);
-                    if ($res) {
-                        echo 'Approved pdf';
-                    }
-                } else {
-                    echo "Error: PDF ID not set.";
-                }
+        if (isset($_POST['pdf_id'])) {
+            $pdf_id = $_POST['pdf_id'];
+            $approvesql = "UPDATE pdf SET is_verify= '1' WHERE f_id = $pdf_id";
+            $approveres = mysqli_query($conn, $approvesql);
+            if ($res) {
+                echo 'Approved pdf';
             }
-            ?>
+        } else {
+            echo "Error: PDF ID not set.";
+        }
+    }
+    ?>
 </body>
 
 </html>
