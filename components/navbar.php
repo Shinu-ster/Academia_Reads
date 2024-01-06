@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../styles/navbar.css?v=<?php echo time(); ?>">
-     <script>
+     <script>nu2301
+     
         function confirmLogout() {
             return confirm("Are you sure you want to log out?");
         }

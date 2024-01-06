@@ -28,8 +28,6 @@ if ($_SESSION['is_admin'] = 5 && isset($_SESSION['id'])) {
     $sql = "SELECT * FROM pdf where is_verify = 0";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
-    // if ($num > 0) {
-    // while ($row = mysqli_fetch_assoc($result)) {
     ?>
     <?php
     if ($num == 0) :
