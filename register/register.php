@@ -69,7 +69,7 @@
             $pass = md5($_POST['password']);
             $email = $_POST['email'];
             $sem = $_POST['sem'];
-            $sql = "INSERT INTO student (username,name,email,password,semester) values('$user','$name','$pass','$email','$sem')";
+            $sql = "INSERT INTO student (username,name,email,password,semester) values('$user','$name','$email','$pass','$sem')";
             $result = mysqli_query($conn,$sql);
             if($result){
               //redirect to login

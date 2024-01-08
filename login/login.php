@@ -22,6 +22,7 @@ if (isset($_SESSION['id'])) {
         Password: <input type="password" name="password" id=""> <br>
         <button type="submit" name="submit">Submit</button>
     </form>
+    <a href="../register/register.php">Dont have an account?</a>
     <?php
     if (isset($_POST['submit'])) {
         $user = $_POST['username'];
