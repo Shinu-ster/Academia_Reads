@@ -51,7 +51,7 @@
         </p>
         <?php
         //  
-        $adminsql = "SELECT stu_id as id, NULL as is_admin FROM student WHERE stu_id = '$id' UNION SELECT id,is_admin FROM user WHERE id = '$id'";
+        $adminsql = "SELECT stu_id as id, NULL as is_admin FROM student WHERE stu_id = '$id'UNION SELECT id,is_admin FROM user WHERE id = '$id'";
         $re = mysqli_query($conn, $adminsql);
         if ($re) {
             $row = mysqli_fetch_assoc($re);
@@ -76,7 +76,7 @@
             ?>
                 <a href="../profile/profile.php">Profile</a>
             <?php
-            } else {
+            } else if($is_admin == '1' || $is_admin == '0') {
             ?>
                 <a href="../profile/adminprofile.php">Profile</a>
 

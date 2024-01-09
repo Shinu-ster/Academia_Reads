@@ -36,6 +36,7 @@ if (isset($_SESSION['id'])) {
             //redirect to home page
             $row = mysqli_fetch_assoc($result);
             $_SESSION['id'] = $row['id'];
+            $_SESSION['name'] = $row['name'];
             $_SESSION['is_admin'] = $row['is_admin'];
             header('location:http://localhost/4thsemProj/pages/display.php');
         } else {

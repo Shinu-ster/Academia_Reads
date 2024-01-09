@@ -1,5 +1,13 @@
 <?php
     include '../database/dbconnect.php';
+    session_start();
+if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+    $profile = $_SESSION['id'];
+    // Allow to use this page only if the session exists
+} else {
+    header('location:http://localhost/4thsemProj/login/login.php');
+    exit; // Add exit after the header to stop script execution
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +20,26 @@
 <body>
     <?php
         include_once '../components/navbar.php';
+        $getinfo = "SELECT * FROM user where id = '$profile'";
+        $res = mysqli_query($conn,$getinfo);
+        $row = mysqli_fetch_assoc($res);
     ?>
-    <h1>Admin Profile</h1>
+    <table border="1">
+        <caption>
+        <h1>Admin Profile</h1>
+        </caption>
+        <tr>
+            <th>Name: </th>
+            <td><?php echo $row['name']?></td>
+        </tr>
+        <tr>
+            <th>Username: </th>
+            <td><?php echo $row['username']?></td>
+        </tr>
+        <tr>
+            <th>Email: </th>
+            <td><?php echo $row['email']?></td>
+        </tr>
+    </table>
 </body>
 </html>
