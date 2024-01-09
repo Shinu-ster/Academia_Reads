@@ -55,7 +55,6 @@
         $re = mysqli_query($conn, $adminsql);
         if ($re) {
             $row = mysqli_fetch_assoc($re);
-            // echo $id;
             $is_admin = $row['is_admin'];
             if ($is_admin == '1') {
         ?>
@@ -70,18 +69,18 @@
                 <p class="left">
                     <a href="../verification/verify.php">Pdf verification<sup><?php echo $count ?></sup></a>
                 </p>
-                <?php
+            <?php
+            }
 
-                if ($is_admin!= NULL) {
-                ?>
-                    <a href="../profile/adminprofile.php">Profile</a>
-                <?php
-                } else {
-                ?>
+            if ($is_admin == NULL) {
+            ?>
+                <a href="../profile/profile.php">Profile</a>
+            <?php
+            } else {
+            ?>
+                <a href="../profile/adminprofile.php">Profile</a>
 
-                    <a href="../profile/profile.php">Profile</a>
         <?php
-                }
             }
         }
 
