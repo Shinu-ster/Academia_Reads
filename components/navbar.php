@@ -21,11 +21,13 @@
     session_start();
     $id = $_SESSION['id'];
     if ($id) {
-        $countsql = "SELECT COUNT(is_verify) AS count
-    FROM pdf
-    WHERE is_verify = 0 AND id = $id";
+        if ($_SESSION['is_admin'] == '1') {
+            $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0";
+        } else {
+            $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0 AND id = $id";   
+        }
         $res1 = mysqli_query($conn, $countsql);
-
+        $nums = mysqli_num_rows($res1);
         if ($res1) {
             $row = mysqli_fetch_assoc($res1);
             // echo $id;
@@ -76,7 +78,7 @@
             ?>
                 <a href="../profile/profile.php">Profile</a>
             <?php
-            } else if($is_admin == '1' || $is_admin == '0') {
+            } else if ($is_admin == '1' || $is_admin == '0') {
             ?>
                 <a href="../profile/adminprofile.php">Profile</a>
 
