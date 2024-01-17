@@ -2,6 +2,7 @@
 include '../database/dbconnect.php';
 session_start();
 $profile = $_SESSION['id'];
+$is_admin = $_SESSION['is_admin'];
 if ($profile == true) {
     //allow to use this page only if session exists
     // echo "session exists";
@@ -66,22 +67,25 @@ if ($profile == true) {
                     if (
                         $profile == $id || $profile == '5'
                     ) {
+                        if ($is_admin != NULL) {
+
                     ?>
-                        <a href="../crud/edit.php?edit='<?php
-                                                        echo $row['f_id'];
-                                                        ?>'">
-                            <button>
-                                Edit
-                            </button>
-                        </a>
-                        <a href="../crud/delete.php?delete_key='
-                 <?php echo $row['f_id']; ?>
-            '" onclick=" return confirmDelete();">
-                            <button>
-                                Delete
-                            </button>
-                        </a>
+                            <a href="../crud/edit.php?edit='<?php
+                                                            echo $row['f_id'];
+                                                            ?>'">`
+                                <button>
+                                    Edit
+                                </button>
+                            </a>
+                            <a href="../crud/delete.php?delete_key='
+                        <?php echo $row['f_id']; ?>
+                        '" onclick=" return confirmDelete();">
+                                <button>
+                                    Delete
+                                </button>
+                            </a>
                     <?php
+                        }
                     } else {
                     }
                     ?>
