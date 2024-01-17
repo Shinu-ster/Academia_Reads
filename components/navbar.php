@@ -20,6 +20,7 @@
     include '../database/dbconnect.php';
     session_start();
     $id = $_SESSION['id'];
+    $is_admin = $_SESSION['is_admin'];
     if ($id) {
         if ($_SESSION['is_admin'] == '1') {
             $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0";
@@ -52,12 +53,6 @@
             <a href="../crud/addpdf.php">Add pdf</a>
         </p>
         <?php
-        //  
-        $adminsql = "SELECT stu_id as id, NULL as is_admin FROM student WHERE stu_id = '$id'UNION SELECT id,is_admin FROM user WHERE id = '$id'";
-        $re = mysqli_query($conn, $adminsql);
-        if ($re) {
-            $row = mysqli_fetch_assoc($re);
-            $is_admin = $row['is_admin'];
             if ($is_admin == '1') {
         ?>
                 <p class="left">
@@ -84,7 +79,7 @@
 
         <?php
             }
-        }
+        // }
 
         ?>
 

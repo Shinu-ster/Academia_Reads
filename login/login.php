@@ -28,7 +28,7 @@ if (isset($_SESSION['id'])) {
         $user = $_POST['username'];
         $pass = md5($_POST['password']);
         $sql = "SELECT stu_id as id, NULL as is_admin FROM student WHERE username = '$user' AND password = '$pass' 
-                UNION SELECT id, is_admin FROM user WHERE username = '$user' AND password = '$pass'";
+        UNION SELECT id, is_admin FROM user WHERE username = '$user' AND password = '$pass'";
         $result = mysqli_query($conn, $sql);
         $num = mysqli_num_rows($result);
         if ($num > 0) {
