@@ -97,7 +97,7 @@ $row1 = mysqli_fetch_assoc($result1);
                             Name
                         </td>
                         <td>
-                            <input type="text" name="newName" id="">
+                            <input type="text" name="newName" id="" value='<?php echo $row1['name']?>'>
                         </td>
                     </tr>
                     <tr>
@@ -105,7 +105,7 @@ $row1 = mysqli_fetch_assoc($result1);
                             Description
                         </td>
                         <td>
-                            <textarea name="newDesc" id="" cols="30" rows="10"></textarea>
+                            <textarea name="newDesc" id="" cols="30" rows="10" ><?php echo $row1['description']?></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -123,6 +123,7 @@ $row1 = mysqli_fetch_assoc($result1);
                         </td>
                     </tr>
                 </table>
+                <p></p>
                 <button type="submit" name="submit">Submit Changes</button>
             </form>
         </div>
