@@ -25,11 +25,11 @@
 </head>
 <body>
     <form action="" method="post">
-        Full Name: <input type="text" name="name" id=""><br>
-        Username: <input type="text" name="username" id=""><br>
-        Password: <input type="password" name="password" id=""><br>
-        Email: <input type="email" name="email" id=""> <br>
-        Role: <select name="role" id="role" onchange="toggleSemesterOption()"><br>
+        Full Name: <input type="text" name="name" id="" required><br>
+        Username: <input type="text" name="username" id="" required><br>
+        Password: <input type="password" name="password" id="" required><br>
+        Email: <input type="email" name="email" id="" required> <br>
+        Role: <select name="role" id="role" onchange="toggleSemesterOption()" required><br>
             <option value="teacher">Teacher</option>
             <option value="student">student</option>
         </select>

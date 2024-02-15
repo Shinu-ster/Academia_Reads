@@ -18,8 +18,8 @@ if (isset($_SESSION['id'])) {
 
 <body>
     <form action="" method="post">
-        username: <input type="text" name="username" id=""> <br><br>
-        Password: <input type="password" name="password" id=""> <br>
+        username: <input type="text" name="username" id="" required> <br><br>
+        Password: <input type="password" name="password" id="" required> <br>
         <button type="submit" name="submit">Submit</button>
     </form>
     <a href="../register/register.php">Dont have an account?</a>
