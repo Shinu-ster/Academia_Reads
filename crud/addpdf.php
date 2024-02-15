@@ -46,8 +46,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                         Description:
                     </td>
                     <td>
-                        <textarea name="desc" id="" cols="30" required rows="10">
-                            <?php
+                        <textarea name="desc" id="" cols="30" required rows="10"><?php
                             if ($f_id == true) {
                                 echo $row1['description'];
                             } else {
