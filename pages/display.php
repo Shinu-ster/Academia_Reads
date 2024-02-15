@@ -72,7 +72,7 @@ if ($profile == true) {
                     ?>
                             <a href="../crud/edit.php?edit='<?php
                                                             echo $row['f_id'];
-                                                            ?>'">`
+                                                            ?>'">
                                 <button>
                                     Edit
                                 </button>

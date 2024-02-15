@@ -97,7 +97,7 @@ $row1 = mysqli_fetch_assoc($result1);
                             Name
                         </td>
                         <td>
-                            <input type="text" name="newName" id="" value='<?php echo $row1['name']?>'>
+                            <input type="text" name="newName" id="" value='<?php echo $row1['name'] ?>'>
                         </td>
                     </tr>
                     <tr>
@@ -105,7 +105,7 @@ $row1 = mysqli_fetch_assoc($result1);
                             Description
                         </td>
                         <td>
-                            <textarea name="newDesc" id="" cols="30" rows="10" ><?php echo $row1['description']?></textarea>
+                            <textarea name="newDesc" id="" cols="30" rows="10"><?php echo $row1['description'] ?></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -123,29 +123,26 @@ $row1 = mysqli_fetch_assoc($result1);
                         </td>
                     </tr>
                 </table>
-                <p></p>
+                <p style="color:red">No need to insert another file if you just want to update the name of description only*</p>
                 <button type="submit" name="submit">Submit Changes</button>
             </form>
         </div>
     </div>
     <?php
     if (isset($_POST['submit'])) {
-
-        // Remove old file
-        $pdfFilePath = $row1['file'];
-        if (file_exists($pdfFilePath)) {
-            unlink($pdfFilePath);
-        }
-
-        // Remove old cover
-        $coverFilePath = $row1['cover'];
-        if (file_exists($coverFilePath)) {
-            unlink($coverFilePath);
-        }
         $name = $_POST['newName'];
         $desc = mysqli_real_escape_string($conn, $_POST['newDesc']);
-        // $pdf = $_POST['newPdf'];
+
         $file = $_FILES['newPdf']['name'];
+        if ($file == NULL) {
+            $file = $row1['file'];
+        } else {
+            // Remove old file
+            $pdfFilePath = $row1['file'];
+            if (file_exists($pdfFilePath)) {
+                unlink($pdfFilePath);
+            }
+        }
         $temp = $_FILES['newPdf']['tmp_name'];
         $folder = '../pdfs/' . $file;
         if (move_uploaded_file($temp, $folder)) {
@@ -154,6 +151,15 @@ $row1 = mysqli_fetch_assoc($result1);
             echo "file not moved in pdf";
         }
         $cover = $_FILES['newCover']['name'];
+        if ($cover == NULL) {
+            $cover = $row1['cover'];
+        } else {
+            // Remove old cover
+            $coverFilePath = $row1['cover'];
+            if (file_exists($coverFilePath)) {
+                unlink($coverFilePath);
+            }
+        }
         $tempcover = $_FILES['newCover']['tmp_name'];
         $foldercover =  '../cover/' . $cover;
 
@@ -162,12 +168,22 @@ $row1 = mysqli_fetch_assoc($result1);
         } else {
             echo "file not moved in cover";
         }
-        $updatequery = "UPDATE `pdf` SET `name`='$name', `description`='$desc', `file`='$folder', `cover`='$foldercover' WHERE `f_id` = $f_id AND `id` = $profile";
-        $result = mysqli_query($conn, $updatequery);
-        if ($result) {
-            echo '<script>showMsg(); window.location.href = "http://localhost/4thsemProj/pages/display.php";</script>';
+        if ($_SESSION['is_admin'] == 1) {
+            $adminUpdateQuery = "UPDATE `pdf` SET `name`='$name', `description`='$desc', `file`='$folder', `cover`='$foldercover' WHERE `f_id` = $f_id";
+            $result = mysqli_query($conn, $adminUpdateQuery);
+            if ($result) {
+                echo '<script>showMsg(); window.location.href = "http://localhost/4thsemProj/pages/display.php";</script>';
+            } else {
+                echo "Error: " . mysqli_error($conn);
+            }
         } else {
-            echo "Error: " . mysqli_error($conn);
+            $updatequery = "UPDATE `pdf` SET `name`='$name', `description`='$desc', `file`='$folder', `cover`='$foldercover' WHERE `f_id` = $f_id AND `id` = $profile";
+            $result = mysqli_query($conn, $updatequery);
+            if ($result) {
+                echo '<script>showMsg(); window.location.href = "http://localhost/4thsemProj/pages/display.php";</script>';
+            } else {
+                echo "Error: " . mysqli_error($conn);
+            }
         }
     }
     ?>
