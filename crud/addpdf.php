@@ -18,6 +18,12 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../styles/home.css?v=<?php echo time(); ?>">
+    <script>
+        function showApprovMsg() {
+            alert("Added Succesfully Waiting for Admin approvals")
+
+        }
+    </script>
 </head>
 
 <body>
@@ -97,7 +103,8 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
 
             $res = mysqli_query($conn, $sql);
             if ($res) {
-                header('location:http://localhost/4thsemProj/pages/display.php');
+                echo '<script>showApprovMsg(); window.location.href = "http://localhost/4thsemProj/pages/display.php";</script>';
+                // header('location:http://localhost/4thsemProj/pages/display.php');
             } else {
                 echo "Error: " . mysqli_error($conn);
             }
