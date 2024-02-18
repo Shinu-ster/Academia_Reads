@@ -1,20 +1,16 @@
-*{
-    margin:0px;
-    padding:0px;
+.wrapper {
+  margin: 10px;
+  background-color: dodgerblue;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
 }
-.wrapper{
-    margin:10px;
-    background-color: dodgerblue;
-    padding:10px;
-    display:flex;
-    gap:10px;
+div p {
+  text-transform: uppercase;
 }
-div p{
-    text-transform: uppercase;
-}
-button{
-    padding:5px;
+button {
+  padding: 5px;
 }
 .wrapper a {
-    text-decoration: none; 
+  text-decoration: none;
 }

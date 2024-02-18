@@ -23,6 +23,8 @@ if ($profile == true) {
         }
     </script>
     <link rel="stylesheet" href="../styles/display.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
+
 
 </head>
 
