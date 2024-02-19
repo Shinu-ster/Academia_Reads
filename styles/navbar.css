@@ -1,34 +1,29 @@
 nav {
-  height: 50px;
+  height: 60px;
   width: auto;
   background-color: black;
-  padding: 10px;
   display: flex;
-  gap: 20px;
+  align-items: center;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
-input[type="search"] {
-  float: right;
-  /* margin:0; */
-}
+
 nav a {
   color: white;
-  margin-top: 12px;
   text-decoration: none;
 }
 
 nav div {
-  /* padding-top: 12px; */
-  /* margin: auto; */
-  /* text-align: center ; */
-  background-color: blueviolet;
-  height: 50px;
+  text-align: center;
+  height: 40px;
+  width: 90px;
+  line-height: 40px;
+  padding: 10px;
 }
-/* .count {
-  margin-top: 9px;
-} */
-/* nav div:hover {
-  background-color: red;
-} */
+nav div:not(:first-child):hover {
+  background-color: dodgerblue;
+}
+.count a {
+  margin-top: -8px;
+}

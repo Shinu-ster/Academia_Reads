@@ -7,8 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="../styles/navbar.css?v=<?php echo time(); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <script>
         nu2301
 
@@ -45,12 +45,9 @@
     <nav>
 
         <div>
-            <a href="../pages/display.php">HOME Page</a>
+            <a href="../pages/display.php">Academia Reads</a>
         </div>
 
-        <div class="left">
-            <a href="../login/logout.php" onclick="return confirmLogout();">Log out</a>
-        </div>
         <div class="left">
             <a href="../crud/addpdf.php">Add pdf</a>
         </div>
@@ -58,7 +55,7 @@
         if ($is_admin == '1') {
         ?>
             <div class="count">
-                <a href="../admin/adminverify.php">Pdf Verification<sup><?php echo $count ?></sup></a>
+                <a href="../admin/adminverify.php">Verification<sup><?php echo $count ?></sup></a>
             </div>
 
         <?php
@@ -66,7 +63,7 @@
 
         ?>
             <div class="count">
-                <a href="../verification/verify.php">Pdf verification<sup><?php echo $count ?></sup></a>
+                <a href="../verification/verify.php">Verification<sup><?php echo $count ?></sup></a>
             </div>
         <?php
         }
@@ -80,11 +77,12 @@
         } else if ($is_admin == '1' || $is_admin == '0') {
         ?>
             <div><a href="../profile/adminprofile.php">Profile</a></div>
-
         <?php
         }
-
         ?>
+        <div class="left">
+            <a href="../login/logout.php" onclick="return confirmLogout();">Log out</a>
+        </div>
 
     </nav>
 </body>
