@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +15,7 @@
     </script>
 </head>
 
-<body>
+
     <?php
     include '../database/dbconnect.php';
     session_start();
@@ -44,47 +41,58 @@
     ?>
     <nav>
 
-        <div>
-            <a href="../pages/display.php">Academia Reads</a>
-        </div>
+        <a href="../pages/display.php">
+            <div>
+                Academia Reads
+            </div>
+        </a>
 
-        <div class="left">
-            <a href="../crud/addpdf.php">Add pdf</a>
-        </div>
+        <a href="../crud/addpdf.php">
+            <div class="left">
+                Add pdf
+            </div>
+        </a>
         <?php
         if ($is_admin == '1') {
         ?>
+            <a href="../admin/adminverify.php">
             <div class="count">
-                <a href="../admin/adminverify.php">Verification<sup><?php echo $count ?></sup></a>
+                Verification<sup><?php echo $count ?></sup>
             </div>
+            </a>
 
         <?php
         } else {
 
         ?>
+            <a href="../verification/verify.php">
             <div class="count">
-                <a href="../verification/verify.php">Verification<sup><?php echo $count ?></sup></a>
+                Verification<sup><?php echo $count ?></sup>
             </div>
+            </a>
         <?php
         }
 
         if ($is_admin == NULL) {
         ?>
+            <a href="../profile/profile.php">
             <div>
-                <a href="../profile/profile.php">Profile</a>
+                Profile
             </div>
+            </a>
         <?php
         } else if ($is_admin == '1' || $is_admin == '0') {
         ?>
-            <div><a href="../profile/adminprofile.php">Profile</a></div>
+            <a href="../profile/adminprofile.php">
+            <div>Profile</div>
+            </a>
         <?php
         }
         ?>
+        <a href="../login/logout.php" onclick="return confirmLogout();">
         <div class="left">
-            <a href="../login/logout.php" onclick="return confirmLogout();">Log out</a>
+            Log out
         </div>
+        </a>
 
     </nav>
-</body>
-
-</html>

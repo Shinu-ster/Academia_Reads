@@ -7,6 +7,7 @@ nav {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
+  position: sticky;
 }
 
 nav a {
@@ -17,13 +18,15 @@ nav a {
 nav div {
   text-align: center;
   height: 40px;
-  width: 90px;
+  width: 120px;
   line-height: 40px;
   padding: 10px;
 }
-nav div:not(:first-child):hover {
+
+nav a:not(:first-child):hover {
   background-color: dodgerblue;
 }
-.count a {
-  margin-top: -8px;
+
+.count {
+  vertical-align: middle; /* adjust the margin-top */
 }

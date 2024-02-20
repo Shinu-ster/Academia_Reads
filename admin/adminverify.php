@@ -49,7 +49,7 @@ if ($_SESSION['is_admin'] = 5 && isset($_SESSION['id'])) {
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['description']; ?></td>
                     <td>
-                        <img src="<?php echo $row['cover']; ?>" alt="" srcset="" height="20px" width="20px">
+                        <a href="<?php echo $row['file']?>"><img src="<?php echo $row['cover']; ?>" alt="" srcset="" height="20px" width="20px"></a>
                     </td>
                     <td>
                         <form action="" method="post">

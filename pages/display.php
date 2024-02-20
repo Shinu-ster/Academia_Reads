@@ -32,39 +32,41 @@ if ($profile == true) {
     <?php
     include_once '../components/navbar.php';
     ?>
-    <?php
-    $sql = "SELECT * FROM pdf WHERE is_verify = '1'";
-    $result = mysqli_query($conn, $sql);
-    $num = mysqli_num_rows($result);
-    if ($num > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {;
+    <div class="container">
+        <?php
+        $sql = "SELECT * FROM pdf WHERE is_verify = '1'";
+        $result = mysqli_query($conn, $sql);
+        $num = mysqli_num_rows($result);
+        if ($num > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {;
 
-    ?>
-            <div class="wrapper">
-                <div class="image">
-                    <a href="../crud/view.php?view='<?php echo $row['f_id']; ?>'">
-                        <img src="<?php echo $row['cover'] ?>" alt="" srcset="" height="100px">
-                    </a>
-                    <p>
+        ?>
+                <div class="wrapper">
+                    <div class="image">
+                        <a href="../crud/view.php?view='<?php echo $row['f_id']; ?>'">
+                            <img src="<?php echo $row['cover'] ?>" alt="" srcset="" height="100px">
+                        </a>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <?php
+                            echo $row['name'];
+                            ?>
+                        </p>
+                    </div>
+                    <div class="description">
                         <?php
-                        echo $row['name'];
+                        echo $row['description'];
                         ?>
-                    </p>
-                </div>
-                <br>
-                <br>
-                <div class="description">
-                    <?php
-                    echo $row['description'];
-                    ?>
-                    <br>
-                    <p>Added by: <?php
-                                    $id = $row['id'];
-                                    $sql1 = "SELECT * from user where id = $id";
-                                    $result1 = mysqli_query($conn, $sql1);
-                                    $row1 = mysqli_fetch_assoc($result1);
-                                    echo $row1['username'];
-                                    ?></p>
+                        <br>
+                        <p>Added by: <?php
+                                        $id = $row['id'];
+                                        $sql1 = "SELECT * from user where id = $id";
+                                        $result1 = mysqli_query($conn, $sql1);
+                                        $row1 = mysqli_fetch_assoc($result1);
+                                        echo $row1['username'];
+                                        ?></p>
+                    </div>
                     <?php
                     if (
                         $profile == $id || $profile == '5'
@@ -72,47 +74,49 @@ if ($profile == true) {
                         if ($is_admin != NULL) {
 
                     ?>
-                            <a href="../crud/edit.php?edit='<?php
-                                                            echo $row['f_id'];
-                                                            ?>'">
-                                <button>
-                                    Edit
-                                </button>
-                            </a>
-                            <a href="../crud/delete.php?delete_key='
+                            <div class="buttons">
+                                <a href="../crud/edit.php?edit='<?php
+                                                                echo $row['f_id'];
+                                                                ?>'">
+                                    <button>
+                                        Edit
+                                    </button>
+                                </a>
+                                <a href="../crud/delete.php?delete_key='
                         <?php echo $row['f_id']; ?>
                         '" onclick=" return confirmDelete();">
-                                <button>
-                                    Delete
-                                </button>
-                            </a>
+                                    <button>
+                                        Delete
+                                    </button>
+                                </a>
+                            </div>
                     <?php
                         }
                     } else {
                     }
                     ?>
+
                 </div>
-            </div>
 
 
 
-    <?php
+        <?php
+            }
         }
-    }
 
-    if (isset($_POST['search'])) {
-        $search = $_POST['search'];
-        echo $search;
-        $_SESSION['search'] = $search;
+        if (isset($_POST['search'])) {
+            $search = $_POST['search'];
+            echo $search;
+            $_SESSION['search'] = $search;
 
-        // echo $search;
-        header('location:http://localhost/4thsemProj/pages/search.php');
-    }
+            // echo $search;
+            header('location:http://localhost/4thsemProj/pages/search.php');
+        }
 
-    ?>
-
+        ?>
 
 
+    </div>
 
 </body>
 
