@@ -16,49 +16,59 @@
 </head>
 
 
-    <?php
-    include '../database/dbconnect.php';
-    session_start();
-    $id = $_SESSION['id'];
-    $is_admin = $_SESSION['is_admin'];
-    if ($id) {
-        if ($_SESSION['is_admin'] == '1') {
-            $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0";
-        } else {
-            $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0 AND id = $id";
-        }
-        $res1 = mysqli_query($conn, $countsql);
-        $nums = mysqli_num_rows($res1);
-        if ($res1) {
-            $row = mysqli_fetch_assoc($res1);
-            // echo $id;
-            $count = $row['count'];
-        } else {
-            echo "Error: " . mysqli_error($conn);
-        }
+<?php
+include '../database/dbconnect.php';
+session_start();
+$id = $_SESSION['id'];
+$is_admin = $_SESSION['is_admin'];
+if ($id) {
+    if ($_SESSION['is_admin'] == '1') {
+        $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0";
+    } else {
+        $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0 AND id = $id";
     }
+    $res1 = mysqli_query($conn, $countsql);
+    $nums = mysqli_num_rows($res1);
+    if ($res1) {
+        $row = mysqli_fetch_assoc($res1);
+        // echo $id;
+        $count = $row['count'];
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+}
 
+?>
+<nav>
+
+    <a href="../pages/display.php">
+        <div>
+            Academia Reads
+        </div>
+    </a>
+    <?php
+    if (!isset($_SESSION['is_admin'])) {
+        //Is Student
+    } else {
+        // Is admin
     ?>
-    <nav>
-
-        <a href="../pages/display.php">
-            <div>
-                Academia Reads
-            </div>
-        </a>
-
-        <a href="../crud/addpdf.php">
+        <a href="http://localhost/4thsemProj/crud/addpdf.php">
             <div class="left">
                 Add pdf
             </div>
         </a>
-        <?php
+    <?php
+    }
+    ?>
+    <?php
+    if (isset($_SESSION['is_admin'])) {
+
         if ($is_admin == '1') {
-        ?>
+    ?>
             <a href="../admin/adminverify.php">
-            <div class="count">
-                Verification<sup><?php echo $count ?></sup>
-            </div>
+                <div class="count">
+                    Verification<sup><?php echo $count ?></sup>
+                </div>
             </a>
 
         <?php
@@ -66,33 +76,32 @@
 
         ?>
             <a href="../verification/verify.php">
-            <div class="count">
-                Verification<sup><?php echo $count ?></sup>
-            </div>
+                <div class="count">
+                    Verification<sup><?php echo $count ?></sup>
+                </div>
             </a>
         <?php
         }
-
-        if ($is_admin == NULL) {
+    }
+    if ($is_admin == NULL) {
         ?>
-            <a href="../profile/profile.php">
+        <a href="../profile/profile.php">
             <div>
                 Profile
             </div>
-            </a>
-        <?php
-        } else if ($is_admin == '1' || $is_admin == '0') {
-        ?>
-            <a href="../profile/adminprofile.php">
+        </a>
+    <?php
+    } else if ($is_admin == '1' || $is_admin == '0') {
+    ?>
+        <a href="../profile/adminprofile.php">
             <div>Profile</div>
-            </a>
-        <?php
-        }
-        ?>
-        <a href="../login/logout.php" onclick="return confirmLogout();">
+        </a>
+    <?php
+    }
+    ?>
+    <a href="../login/logout.php" onclick="return confirmLogout();">
         <div class="left">
             Log out
         </div>
-        </a>
-
-    </nav>
+    </a>
+</nav>

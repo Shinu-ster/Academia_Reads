@@ -8,6 +8,9 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     header('location:http://localhost/4thsemProj/login/login.php');
     exit; // Add exit after the header to stop script execution
 }
+if (!isset($_SESSION['is_admin'])) {
+    header('location:http://localhost/4thsemProj/pages/display.php');
+}
 
 ?>
 <!DOCTYPE html>
@@ -48,12 +51,12 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                     </td>
                     <td>
                         <textarea name="desc" id="" cols="30" required rows="10"><?php
-                            if ($f_id == true) {
-                                echo $row1['description'];
-                            } else {
-                                echo "Add Description";
-                            }
-                            ?></textarea>
+                                                                                    if ($f_id == true) {
+                                                                                        echo $row1['description'];
+                                                                                    } else {
+                                                                                        echo "Add Description";
+                                                                                    }
+                                                                                    ?></textarea>
                     </td>
                 </tr>
                 <tr>

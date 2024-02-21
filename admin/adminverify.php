@@ -2,10 +2,11 @@
 
 include '../database/dbconnect.php';
 session_start();
-if ($_SESSION['is_admin'] = 5 && isset($_SESSION['id'])) {
-    // echo $_SESSION['is_admin'];
+if ($_SESSION['is_admin'] == 1) {
 } else {
-    header('location:http://localhost/4thsemProj/crud/addpdf.php');
+    header('location:http://localhost/4thsemProj/pages/display.php');
+    // echo "Invalid access";
+    // exit();
 }
 
 ?>
@@ -49,7 +50,7 @@ if ($_SESSION['is_admin'] = 5 && isset($_SESSION['id'])) {
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['description']; ?></td>
                     <td>
-                        <a href="<?php echo $row['file']?>"><img src="<?php echo $row['cover']; ?>" alt="" srcset="" height="20px" width="20px"></a>
+                        <a href="<?php echo $row['file'] ?>"><img src="<?php echo $row['cover']; ?>" alt="" srcset="" height="20px" width="20px"></a>
                     </td>
                     <td>
                         <form action="" method="post">
