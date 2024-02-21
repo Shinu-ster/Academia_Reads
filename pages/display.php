@@ -78,14 +78,14 @@ if ($profile == true) {
                                 <a href="../crud/edit.php?edit='<?php
                                                                 echo $row['f_id'];
                                                                 ?>'">
-                                    <button>
+                                    <button class="primary">
                                         Edit
                                     </button>
                                 </a>
                                 <a href="../crud/delete.php?delete_key='
                         <?php echo $row['f_id']; ?>
                         '" onclick=" return confirmDelete();">
-                                    <button>
+                                    <button class="danger">
                                         Delete
                                     </button>
                                 </a>

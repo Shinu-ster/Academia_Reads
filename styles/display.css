@@ -1,9 +1,9 @@
 body {
-  background-color: whitesmoke;
+  background-color: #f5e4e4;
 }
 .wrapper {
   margin: 10px;
-  background-color: dodgerblue;
+  /* background-color: rgba(58, 29, 223, 0.521); */
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -39,6 +39,20 @@ body {
   align-items: flex-end;
 }
 
+.wrapper .buttons button {
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  padding: 10px;
+}
+
+.danger {
+  background-color: rgb(253, 56, 56);
+}
+.primary {
+  background-color: #0d6dfdd3;
+  width: 60px;
+}
 button {
   padding: 5px 10px;
   white-space: nowrap;
