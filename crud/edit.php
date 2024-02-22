@@ -9,9 +9,19 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     exit; // Add exit after the header to stop script execution
 }
 $f_id = $_GET['edit'];
-$sql1 = "SELECT * FROM pdf WHERE f_id = $f_id";
-$result1 = mysqli_query($conn, $sql1);
-$row1 = mysqli_fetch_assoc($result1);
+$accessID = "SELECT id from pdf where f_id = $f_id";
+$res = mysqli_query($conn, $accessID);
+$row = mysqli_fetch_assoc($res);
+$uploaderid = $row['id'];
+
+if ($uploaderid == $profile || $_SESSION['is_admin'] == 1) {
+    // Allow to use this page
+    $sql1 = "SELECT * FROM pdf WHERE f_id = $f_id";
+    $result1 = mysqli_query($conn, $sql1);
+    $row1 = mysqli_fetch_assoc($result1);
+} else {
+    header('location:http://localhost/4thsemProj/pages/display.php');
+}
 
 ?>
 <!DOCTYPE html>
