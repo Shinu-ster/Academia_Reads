@@ -21,6 +21,7 @@ if ($uploaderid == $profile || $_SESSION['is_admin'] == 1) {
     $row1 = mysqli_fetch_assoc($result1);
 } else {
     header('location:http://localhost/4thsemProj/pages/display.php');
+    exit();
 }
 
 ?>
