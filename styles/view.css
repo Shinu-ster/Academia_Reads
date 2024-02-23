@@ -1,8 +1,19 @@
 .container {
-  height: 400px;
-  width: 500px;
-  background-color: aqua;
+  height: 1000px;
+  width: 100%;
+  /* background-color: aqua; */
+}
+h1 {
+  margin: 25px;
 }
 table {
-  margin-top: 1020px;
+  margin: 15px;
+}
+table td,
+th {
+  padding: 10px;
+}
+
+.comment {
+  margin: 20px;
 }

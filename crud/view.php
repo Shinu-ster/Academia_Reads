@@ -27,34 +27,48 @@ if ($profile == true) {
 </head>
 
 <body>
-    <div class="container">
-        <?php
-        $sql = "SELECT * FROM pdf where f_id = $pdfid";
-        echo $pdfid;
-        $result = mysqli_query($conn, $sql);
-        $num = mysqli_num_rows($result);
-        echo $num;
-        if ($num == 1) {
-            while ($row = mysqli_fetch_assoc($result)) {
-        ?>
-                <table border="1">
-                    <p>hello</p>
-                    <tr>
-                        <td>
 
-                            <?php
-                            echo $row['name'];
-                            ?>
-                        </td>
-                        <td>hello//</td>
+    <?php
+    $sql = "SELECT * FROM pdf where f_id = $pdfid";
+    // echo $pdfid;
+    $result = mysqli_query($conn, $sql);
+    $num = mysqli_num_rows($result);
+    // echo $num;
+    if ($num == 1) {
+        while ($row = mysqli_fetch_assoc($result)) {
+    ?>
+            <div class="container">
+                <h1>
+                    <?php
+                    echo $row['name'];
+                    ?>
+                </h1>
+                <a href="../pages/read.php?show='<?php echo $row['f_id']; ?>'">
+                    <img src="<?php echo $row['cover'] ?>" alt="" srcset="" width="500px">
+                    <p>Click here to read</p>
+                </a>
+                <embed src="<?php echo $row['file'];?>" type="application/pdf">
+                <table border="1">
+                    <tr>
+                        <th>Added By:</th>
+                        <td><?php echo $row['name'] ?></td>
+                    </tr>
+                    <tr>
+                        <th>Description:</th>
+                        <td><?php echo $row['description'] ?></td>
                     </tr>
                 </table>
-    </div>
-<?php
+                <div class="comment">
+                    <form action="" method="post">
+                        <textarea name="" id="" cols="30" rows="10" placeholder="Add Comment"></textarea>
+                        <Button>Submit</Button>
+                    </form>
+                </div>
+            </div>
+    <?php
 
-            }
-        } ?>
-<p>htmlspecialchars_decode</p>
+        }
+    } ?>
 </body>
 
 </html>
