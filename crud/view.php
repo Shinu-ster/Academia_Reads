@@ -47,7 +47,6 @@ if ($profile == true) {
                     <img src="<?php echo $row['cover'] ?>" alt="" srcset="" width="500px">
                     <p>Click here to read</p>
                 </a>
-                <embed src="<?php echo $row['file'];?>" type="application/pdf">
                 <table border="1">
                     <tr>
                         <th>Added By:</th>
@@ -56,6 +55,10 @@ if ($profile == true) {
                     <tr>
                         <th>Description:</th>
                         <td><?php echo $row['description'] ?></td>
+                    </tr>
+                    <tr>
+                        <th>Genre:</th>
+                        <td><?php echo $row['genre'] ?></td>
                     </tr>
                 </table>
                 <div class="comment">
