@@ -8,7 +8,6 @@ if ($_SESSION['is_admin'] == 1) {
     // echo "Invalid access";
     // exit();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,8 +25,7 @@ if ($_SESSION['is_admin'] == 1) {
     include_once '../components/navbar.php'; ?>
 
     <?php
-    $date = date('Y-m-d H:i:s');
-    echo $date;
+
     $sql = "SELECT * FROM pdf where is_verify = 0";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);

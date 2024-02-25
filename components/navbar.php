@@ -64,6 +64,11 @@ if ($id) {
                     Verification<sup><?php echo $count ?></sup>
                 </div>
             </a>
+            <a href="../admin/verifycomment.php">
+                <div>
+                    Comments Verify
+                </div>
+            </a>
 
         <?php
         } else {
