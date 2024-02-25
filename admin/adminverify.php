@@ -26,6 +26,8 @@ if ($_SESSION['is_admin'] == 1) {
     include_once '../components/navbar.php'; ?>
 
     <?php
+    $date = date('Y-m-d H:i:s');
+    echo $date;
     $sql = "SELECT * FROM pdf where is_verify = 0";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
@@ -74,7 +76,7 @@ if ($_SESSION['is_admin'] == 1) {
 
         if (isset($_POST['pdf_id'])) {
             $pdf_id = $_POST['pdf_id'];
-            $approvesql = "UPDATE pdf SET is_verify= '1' WHERE f_id = $pdf_id";
+            $approvesql = "UPDATE pdf SET is_verify= '1', verified_date = CURRENT_TIMESTAMP WHERE f_id = $pdf_id";
             $approveres = mysqli_query($conn, $approvesql);
             if ($res) {
                 echo 'Approved pdf';
