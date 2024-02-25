@@ -63,15 +63,25 @@ if ($profile == true) {
                 </table>
                 <div class="comment">
                     <form action="" method="post">
-                        <textarea name="" id="" cols="30" rows="10" placeholder="Add Comment"></textarea>
-                        <Button>Submit</Button>
+                        <textarea id="" cols="30" rows="10" placeholder="Add Comment" name="comment"></textarea>
+                        <Button type="submit" name="submit">Submit</Button>
                     </form>
                 </div>
             </div>
     <?php
 
         }
-    } ?>
+    }
+    if (isset($_POST['submit'])) {
+        $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
+        $commentsql = "INSERT INTO resource_comment(r_id,comment,cm_date,cm_by) values($pdfid,'$comment',CURRENT_TIMESTAMP,$profile) ";
+        $result = mysqli_query($conn, $commentsql);
+        if ($result) {
+        } else {
+            echo "Error: " . mysqli_error($conn);
+        }
+    }
+    ?>
 </body>
 
 </html>

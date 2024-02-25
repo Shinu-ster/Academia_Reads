@@ -67,13 +67,7 @@
                             Description:
                         </td>
                         <td>
-                            <textarea name="desc" id="" cols="30" required rows="10"><?php
-                                                                                        if ($f_id == true) {
-                                                                                            echo $row1['description'];
-                                                                                        } else {
-                                                                                            echo "Add Description";
-                                                                                        }
-                                                                                        ?></textarea>
+                            <textarea name="desc" id="" cols="30" required rows="10"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -120,11 +114,6 @@
                             </select>
                         </td>
                     </tr>
-                    <?php
-                    if (isset($_POST['genre']) == 'course') {
-                        echo "hello";
-                    }
-                    ?>
                     </tr>
                 </table>
                 <button type="submit" name="submit">Submit</button>
