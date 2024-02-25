@@ -41,7 +41,6 @@
                     courseListContainer.style.visibility = "hidden";
                 }
                 //  = (genreSelect.value != "course
-                selectCourse.style.visibility = (genreSelect.value != "course");
 
                 console.log(selectCourse.disabled)
             }
@@ -104,16 +103,28 @@
                                 <option value="novels">Novels</option>
                             </select>
                         </td>
-                        <td id="courselistContainer">
+                    <tr id="courselistContainer" style="visibility:hidden">
+                        <td>
+                            Semester
+                        </td>
+                        <td>
                             <select name="courselist" id="courselist" disabled>
-                                <option value="1">first</option>
+                                <option value="1">First</option>
+                                <option value="2">Second</option>
+                                <option value="3">Third</option>
+                                <option value="4">Fourth</option>
+                                <option value="5">Fifth</option>
+                                <option value="6">Sixth</option>
+                                <option value="7">Seventh</option>
+                                <option value="8">Eighth</option>
                             </select>
                         </td>
-                        <?php
-                        if (isset($_POST['genre']) == 'course') {
-                            echo "hello";
-                        }
-                        ?>
+                    </tr>
+                    <?php
+                    if (isset($_POST['genre']) == 'course') {
+                        echo "hello";
+                    }
+                    ?>
                     </tr>
                 </table>
                 <button type="submit" name="submit">Submit</button>
