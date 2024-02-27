@@ -22,65 +22,78 @@ if ($_SESSION['is_admin'] == 1) {
 
 <body>
     <?php
-    $joinsql = "SELECT * FROM resource_comment as rc inner join student on student.stu_id = rc.cm_by inner join pdf on pdf.f_id = rc.r_id, where rc.is_verified = 0";
+    $joinsql = "SELECT CASE 
+    when rc.cm_by is not null then s.name
+    when rc.cm_by_admin is not null then u.name
+    end as commenter_name,
+    rc.comment,
+    r.name,rc.r_id
+    from resource_comment rc 
+    inner join 
+    pdf r on r.f_id = rc.r_id
+    left join 
+    student s on s.stu_id = rc.cm_by
+    left join 
+    user u on u.id = rc.cm_by_admin
+    where rc.is_verified = 0";
     $result = mysqli_query($conn, $joinsql);
     $num = mysqli_num_rows($result);
+    if ($num == 0) {
     ?>
+        <p>There are no comments to verify</p>
     <?php
-    if ($num == 0) :
+    } else {
     ?>
-        <p>No PDFs to Approve yet</p>
-    <?php else : ?>
-        <table border=1>
+        <table border="1">
             <tr>
-
                 <th>Comment</th>
-                <th>Commented by</th>
-                <th>Commented at</th>
+                <th>Commenter name</th>
+                <th>Resource name</th>
                 <th>Status</th>
             </tr>
             <?php
             while ($row = mysqli_fetch_assoc($result)) :
-            ?>
-                <tr>
+            ?><tr>
                     <td><?php echo $row['comment']; ?></td>
-                    <td><?php echo $row['username'] ?></td>
-                    <td><?php echo $row['name'] ?></td>
+                    <td><?php echo $row['commenter_name']; ?></td> <!-- Change 'username' to 'commenter_name' -->
+                    <td><?php echo $row['name']; ?></td> <!-- Assuming 'name' corresponds to the commented resource -->
                     <td>
                         <form method="POST">
-                            <button type="submit" name="approve" value=<?php echo $row['r_id'] ?>>Approve</button>
-                            <button type="submit" name="deny" value=<?php echo $row['r_id'] ?>>Deny</button>
+                            <button type="submit" name="approve" value="<?php echo $row['r_id']; ?>">Approve</button>
+                            <button type="submit" name="deny" value="<?php echo $row['r_id']; ?>">Deny</button>
                         </form>
+
                     </td>
                 </tr>
-            <?php
+        <?php
             endwhile;
-            if (isset($_POST['approve'])) {
-                $id = $_POST['approve'];
-                $approvesql = "UPDATE resource_comment set is_verified = 1 where r_id = $id";
-                $res = mysqli_query($conn, $approvesql);
-                if ($res) {
-                    echo "done";
-                } else {
-                    echo "Error: " . mysqli_error($conn);
-                }
+        }
+        if (isset($_POST['approve'])) {
+            $id = $_POST['approve'];
+            $approvesql = "UPDATE resource_comment set is_verified = 1 where r_id = $id";
+            $approveres = mysqli_query($conn, $approvesql);
+            if ($res) {
+                echo 'Approved Comment';
             }
+        } else {
+            // echo "Error: PDF ID not set.";
+        }
 
-            if (isset($_POST['deny'])) {
-                $id = $_POST['deny'];
-                $denysql = "UPDATE resource_comment set is_verified = 0 where r_id = $id";
-                $res = mysqli_query($conn, $denysql);
-                if ($res) {
-                    echo "done";
-                } else {
-                    echo "Error: " . mysqli_error($conn);
-                }
+        if (isset($_POST['deny'])) {
+            $id = $_POST['deny'];
+            $denysql = "UPDATE resource_comment set is_verified = 0 where r_id = $id";
+            $approveres = mysqli_query($conn, $denysql);
+            if ($res) {
+                echo 'Denied Comment';
             }
-            ?>
+        } else {
+            // echo "Error: PDF ID not set.";
+        }
+        ?>
         </table>
-    <?php
-    endif;
-    ?>
+        <?php
+
+        ?>
 </body>
 
 </html>

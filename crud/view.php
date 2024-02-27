@@ -68,20 +68,19 @@ $isadmin = $_SESSION['is_admin'];
                     </form>
                 </div>
                 <?php
-                $getcomments = "select CASE 
+                $getcomments = "SELECT CASE 
                 when rc.cm_by is not null then s.name
                 when rc.cm_by_admin is not null then u.name
                 end as commenter_name,
-                rc.comment,
-                r.name
-              from resource_comment rc 
-              inner join 
-              pdf r on r.f_id = rc.r_id
-              left join 
-              student s on s.stu_id = rc.cm_by
-              left join 
-              user u on u.id = rc.cm_by_admin
-              where r_id = $pdfid";
+                rc.comment, r.name
+                from resource_comment rc 
+                inner join 
+                pdf r on r.f_id = rc.r_id
+                left join 
+                student s on s.stu_id = rc.cm_by
+                left join 
+                user u on u.id = rc.cm_by_admin
+                where r_id = $pdfid and rc.is_verified = 1";
                 $result = mysqli_query($conn, $getcomments);
                 $num = mysqli_num_rows($result);
                 if ($num > 0) :

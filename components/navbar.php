@@ -18,17 +18,27 @@ $is_admin = $_SESSION['is_admin'];
 if ($id) {
     if ($_SESSION['is_admin'] == '1') {
         $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0";
+        $commentcount = "SELECT COUNT(is_verified) as count FROM resource_comment WHERE is_verified = 0"; // Corrected SQL query
     } else {
         $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0 AND id = $id";
     }
     $res1 = mysqli_query($conn, $countsql);
-    $nums = mysqli_num_rows($res1);
     if ($res1) {
         $row = mysqli_fetch_assoc($res1);
-        // echo $id;
         $count = $row['count'];
     } else {
         echo "Error: " . mysqli_error($conn);
+    }
+
+    // Move this part inside the if condition
+    if ($is_admin == '1') {
+        $res2 = mysqli_query($conn, $commentcount);
+        if ($res2) {
+            $row = mysqli_fetch_assoc($res2);
+            $countcmt = $row['count'];
+        } else {
+            echo "Error: " . mysqli_error($conn);
+        }
     }
 }
 
@@ -66,7 +76,7 @@ if ($id) {
             </a>
             <a href="../admin/verifycomment.php">
                 <div>
-                    Comments Verify
+                    Comments Verify<sup><?php echo $countcmt?></sup>
                 </div>
             </a>
 
