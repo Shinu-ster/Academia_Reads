@@ -25,9 +25,9 @@ if ($num == 1) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
             <title>Document</title>
-            <?php
+            <!-- <?php
             include_once '../components/navbar.php';
-            ?>
+            ?> -->
             <style>
                 embed {
                     height: 1000px;

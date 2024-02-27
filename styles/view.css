@@ -16,4 +16,7 @@ th {
 
 .comment {
   margin: 20px;
+  background-color: thistle;
+  width: auto;
+  padding: 20px;
 }

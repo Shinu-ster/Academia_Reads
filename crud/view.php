@@ -9,7 +9,7 @@ if ($profile == true) {
 } else {
     header('location:http://localhost/4thsemProj/login/login.php');
 }
-
+$isadmin = $_SESSION['is_admin'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,24 +61,53 @@ if ($profile == true) {
                         <td><?php echo $row['genre'] ?></td>
                     </tr>
                 </table>
-                <div class="comment">
+                <div class="commentbox">
                     <form action="" method="post">
                         <textarea id="" cols="30" rows="10" placeholder="Add Comment" name="comment"></textarea>
                         <Button type="submit" name="submit">Submit</Button>
                     </form>
                 </div>
+                <?php
+                $getcomments = "SELECT * from resource_comment where r_id = $pdfid";
+                $result = mysqli_query($conn, $getcomments);
+                $num = mysqli_num_rows($result);
+                if ($num > 0) :
+                    while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                        <div class="comment">
+                    <?php
+                        echo $row['comment'] . '</br>';
+                        ?>
+                        </div>
+                        <?php
+                    }
+                endif;
+                    ?>
             </div>
     <?php
 
         }
     }
-    if (isset($_POST['submit'])) {
-        $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
-        $commentsql = "INSERT INTO resource_comment(r_id,comment,cm_date,cm_by) values($pdfid,'$comment',CURRENT_TIMESTAMP,$profile) ";
-        $result = mysqli_query($conn, $commentsql);
-        if ($result) {
-        } else {
-            echo "Error: " . mysqli_error($conn);
+
+    if ($isadmin == 1 || $isadmin == 0) {
+        if (isset($_POST['submit'])) {
+            $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
+            $commentsql = "INSERT INTO resource_comment(r_id,comment,cm_date,cm_by_admin) values($pdfid,'$comment',CURRENT_TIMESTAMP,$profile) ";
+            $result = mysqli_query($conn, $commentsql);
+            if ($result) {
+            } else {
+                echo "Error: " . mysqli_error($conn);
+            }
+        }
+    } else {
+        if (isset($_POST['submit'])) {
+            $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
+            $commentsql = "INSERT INTO resource_comment(r_id,comment,cm_date,cm_by) values($pdfid,'$comment',CURRENT_TIMESTAMP,$profile) ";
+            $result = mysqli_query($conn, $commentsql);
+            if ($result) {
+            } else {
+                echo "Error: " . mysqli_error($conn);
+            }
         }
     }
     ?>

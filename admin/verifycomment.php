@@ -22,8 +22,7 @@ if ($_SESSION['is_admin'] == 1) {
 
 <body>
     <?php
-    $joinsql = "SELECT * FROM resource_comment as rc inner join student on student.stu_id = rc.cm_by inner join pdf on pdf.f_id = rc.r_id where rc.is_verified = 0";
-    // $sql = "SELECT * FROM resource_comment where is_verified = 0";
+    $joinsql = "SELECT * FROM resource_comment as rc inner join student on student.stu_id = rc.cm_by inner join pdf on pdf.f_id = rc.r_id, where rc.is_verified = 0";
     $result = mysqli_query($conn, $joinsql);
     $num = mysqli_num_rows($result);
     ?>
@@ -47,12 +46,36 @@ if ($_SESSION['is_admin'] == 1) {
                     <td><?php echo $row['comment']; ?></td>
                     <td><?php echo $row['username'] ?></td>
                     <td><?php echo $row['name'] ?></td>
-                    <td><button>Approve</button>
-                        <button>Deny</button>
+                    <td>
+                        <form method="POST">
+                            <button type="submit" name="approve" value=<?php echo $row['r_id'] ?>>Approve</button>
+                            <button type="submit" name="deny" value=<?php echo $row['r_id'] ?>>Deny</button>
+                        </form>
                     </td>
                 </tr>
             <?php
             endwhile;
+            if (isset($_POST['approve'])) {
+                $id = $_POST['approve'];
+                $approvesql = "UPDATE resource_comment set is_verified = 1 where r_id = $id";
+                $res = mysqli_query($conn, $approvesql);
+                if ($res) {
+                    echo "done";
+                } else {
+                    echo "Error: " . mysqli_error($conn);
+                }
+            }
+
+            if (isset($_POST['deny'])) {
+                $id = $_POST['deny'];
+                $denysql = "UPDATE resource_comment set is_verified = 0 where r_id = $id";
+                $res = mysqli_query($conn, $denysql);
+                if ($res) {
+                    echo "done";
+                } else {
+                    echo "Error: " . mysqli_error($conn);
+                }
+            }
             ?>
         </table>
     <?php
