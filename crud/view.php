@@ -68,21 +68,35 @@ $isadmin = $_SESSION['is_admin'];
                     </form>
                 </div>
                 <?php
-                $getcomments = "SELECT * from resource_comment where r_id = $pdfid";
+                $getcomments = "select CASE 
+                when rc.cm_by is not null then s.name
+                when rc.cm_by_admin is not null then u.name
+                end as commenter_name,
+                rc.comment,
+                r.name
+              from resource_comment rc 
+              inner join 
+              pdf r on r.f_id = rc.r_id
+              left join 
+              student s on s.stu_id = rc.cm_by
+              left join 
+              user u on u.id = rc.cm_by_admin
+              where r_id = $pdfid";
                 $result = mysqli_query($conn, $getcomments);
                 $num = mysqli_num_rows($result);
                 if ($num > 0) :
                     while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                         <div class="comment">
-                    <?php
-                        echo $row['comment'] . '</br>';
-                        ?>
+                            <?php
+                            echo $row['comment'] . '</br>';
+                            echo $row['commenter_name'] . '</br>';
+                            ?>
                         </div>
-                        <?php
+                <?php
                     }
                 endif;
-                    ?>
+                ?>
             </div>
     <?php
 
