@@ -2,6 +2,13 @@
 
 include '../database/dbconnect.php';
 session_start();
+if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+    $profile = $_SESSION['id'];
+    // Allow to use this page only if the session exists
+} else {
+    header('location:http://localhost/4thsemProj/login/login.php');
+    exit; // Add exit after the header to stop script execution
+}
 if ($_SESSION['is_admin'] == 1) {
 } else {
     header('location:http://localhost/4thsemProj/pages/display.php');
@@ -18,6 +25,55 @@ if ($_SESSION['is_admin'] == 1) {
     <title>Document</title>
     <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../styles/table.css?v=<?php echo time(); ?>">
+    <style>
+        /* Style the modal */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -54,9 +110,10 @@ if ($_SESSION['is_admin'] == 1) {
                     </td>
                     <td>
                         <form action="" method="post">
-                            <input type="hidden" name="pdf_id" value="<?php echo $row['f_id']; ?>">
-                            <input type="submit" value="Approve" name="approve" onclick="return approvepdf($row['f_id']);">
-                            <input type="submit" value="Decline" name="">
+                            <button type="submit" name="approve" value="<?php echo $row['f_id']; ?>">Approve</button>
+
+                            <button type="button" onclick="showDenyModal(<?php echo $row['f_id']; ?>)">Deny</button>
+
                         </form>
                     </td>
                 </tr>
@@ -69,18 +126,47 @@ if ($_SESSION['is_admin'] == 1) {
     endif;
     ?>
 
+    <div id="denyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideDenyModal()">&times;</span>
+            <form action="" method="post">
+                <label for="denyReason">Deny Reason:</label><br>
+                <input type="text" id="denyReason" name="denyReason"><br>
+                <button type="submit" name="denybutton" id="denyButton">Deny</button>
+            </form>
+        </div>
+    </div>
+    <?php
+    if (isset($_POST['denybutton'])) {
+        $reason = $_POST['denyReason'];
+        $denyid = $_POST['denybutton'];
+        $feedbacksql = "INSERT INTO resource_feedback (`r_id`, `feedback`, `fb_by`) values ($denyid, '$reason', $profile)";
+        $res = mysqli_query($conn, $feedbacksql);
+        if ($res) {
+            echo 'Feedback send';
+        }else{
+            echo 'Error on sending feeding';
+        }
+    }
+
+    ?>
+    <script>
+        function showDenyModal(pdfId) {
+            document.getElementById('denyModal').style.display = 'block';
+            document.getElementById('denyButton').value = pdfId;
+        }
+
+        function hideDenyModal() {
+            document.getElementById('denyModal').style.display = 'none';
+        }
+    </script>
     <?php
     if (isset($_POST['approve'])) {
-
-        if (isset($_POST['pdf_id'])) {
-            $pdf_id = $_POST['pdf_id'];
-            $approvesql = "UPDATE pdf SET is_verify= '1', verified_date = CURRENT_TIMESTAMP WHERE f_id = $pdf_id";
-            $approveres = mysqli_query($conn, $approvesql);
-            if ($res) {
-                echo 'Approved pdf';
-            }
-        } else {
-            echo "Error: PDF ID not set.";
+        $pdf_id = $_POST['approve'];
+        $approvesql = "UPDATE pdf SET is_verify= '1', verified_date = CURRENT_TIMESTAMP WHERE f_id = $pdf_id";
+        $approveres = mysqli_query($conn, $approvesql);
+        if ($approveres) {
+            echo 'Approved pdf';
         }
     }
     ?>
