@@ -25,7 +25,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     <?php include_once '../components/navbar.php'; ?>
 
     <?php
-    $sql = "SELECT * FROM pdf WHERE id = $profile AND is_verify = 0";
+    $sql = "SELECT * FROM pdf WHERE id = $profile ";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
     ?>
@@ -39,17 +39,40 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                 <th>Description</th>
                 <th>Cover</th>
                 <th>Status</th>
+                <th>Feedback</th>
             </tr>
 
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                <?php $resourceid = $row['f_id'] ?>
                 <tr>
                     <td><?php echo $row['name']; ?></td>
                     <td id="description"><?php echo $row['description']; ?></td>
-                    <td><img src="<?php echo $row['cover']; ?>" alt="" height="20px" width="20px"></td>
+                    <td>
+                        <a href="../pages/read.php?show='<?php echo $resourceid ?>'">
+                            <img src="<?php echo $row['cover']; ?>" alt="" height="20px" width="20px">
+                        </a>
+                    </td>
                     <td>
                         <?php
                         $status = $row['is_verify'];
                         echo $status == 0 ? 'Pending..' : ($status == 1 ? 'Approved' : 'Unknown');
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        $checkmsg = "SELECT * FROM resource_feedback where r_id = $resourceid";
+                        $res = mysqli_query($conn, $checkmsg);
+                        $num = mysqli_num_rows($res);
+                        if ($num > 0) {
+                            //if exists create session and 
+                            //redirect to home page
+                            $data = mysqli_fetch_assoc($res);
+                            $message = $data['feedback'];
+                            echo $message .'</br>';
+                            echo '<a href="../crud/edit.php?edit='.$row['f_id'].'"">ReUpload</a>';
+                        } else {
+                            echo "No messages";
+                        }
                         ?>
                     </td>
                 </tr>

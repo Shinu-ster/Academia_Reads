@@ -30,7 +30,6 @@ $isadmin = $_SESSION['is_admin'];
 
     <?php
     $sql = "SELECT * FROM pdf where f_id = $pdfid";
-    // echo $pdfid;
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
     // echo $num;
