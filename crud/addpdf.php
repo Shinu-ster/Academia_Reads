@@ -140,7 +140,7 @@
                 } else {
                     echo "file not moved in cover";
                 }
-                $sql = "INSERT INTO pdf (name,description,file,cover,id,upload_date) VALUES ('$name','$desc','$folder','$foldercover','$profile','CURRENT_TIMESTAMP')";
+                $sql = "INSERT INTO pdf (name,description,file,cover,id,upload_date) VALUES ('$name','$desc','$folder','$foldercover','$profile',CURRENT_TIMESTAMP)";
 
                 $res = mysqli_query($conn, $sql);
                 if ($res) {
