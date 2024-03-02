@@ -23,7 +23,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     <?php
     include_once '../components/navbar.php';
 
-    $getinfo = "SELECT * FROM student where stu_id = '$profile'";
+    $getinfo = "SELECT * FROM student inner join semester on semester.sem_id = student.semester where stu_id = '$profile'";
     $res = mysqli_query($conn, $getinfo);
     $row = mysqli_fetch_assoc($res);
 
@@ -50,7 +50,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
         </tr>
         <tr>
             <th>Verified: </th>
-            <td><?php echo $is_verify =  $row['is_verified'] == 0 ?  "Not Verified": "Verified";?></td>
+            <td><?php echo $is_verify =  $row['is_verified'] == 0 ?  "Not Verified" : "Verified"; ?></td>
         </tr>
 
     </table>
