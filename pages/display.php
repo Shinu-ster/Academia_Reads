@@ -34,7 +34,7 @@ if ($profile == true) {
     ?>
     <div class="container">
         <?php
-        $sql = "SELECT * FROM pdf WHERE is_verify = '1'";
+        $sql = "SELECT * FROM pdf WHERE is_verify = '1' ";
         $result = mysqli_query($conn, $sql);
         $num = mysqli_num_rows($result);
         if ($num > 0) {

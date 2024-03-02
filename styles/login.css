@@ -1,0 +1,26 @@
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 5px solid black;
+  height: 250px;
+  width: 250px;
+  padding: 20px;
+}
+input {
+  margin: 10px;
+  width: 190px;
+  padding: 10px;
+  outline: none;
+  border: none;
+  background-color: beige;
+}
+input:active,
+input:focus {
+  border-bottom: 2px solid black;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
