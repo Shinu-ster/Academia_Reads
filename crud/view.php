@@ -15,6 +15,7 @@ $isadmin = $_SESSION['is_admin'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +26,7 @@ $isadmin = $_SESSION['is_admin'];
     include_once '../components/navbar.php';
     ?>
 </head>
+
 <body>
     <?php
     $sql = "SELECT * FROM pdf where f_id = $pdfid";
@@ -38,7 +40,6 @@ $isadmin = $_SESSION['is_admin'];
                 <h1>
                     <?php
                     echo $row['name'];
-                    echo 'session' . $_SESSION['is_admin'];
                     ?>
                 </h1>
                 <a href="../pages/read.php?show='<?php echo $row['f_id']; ?>'">
@@ -110,4 +111,5 @@ $isadmin = $_SESSION['is_admin'];
     }
     ?>
 </body>
+
 </html>
