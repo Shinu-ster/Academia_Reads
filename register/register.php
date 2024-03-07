@@ -33,7 +33,7 @@
                 <label for="name">Full Name:</label> <input type="text" name="name" id="name" required><br>
                 <label for="username">Username: </label> <input type="text" name="username" id="username" required><br>
                 <label for="password">Password: </label> <input type="password" name="password" id="password" required><br>
-                <label for="email" class="email">Email: </label> <input type="email" name="email" id="email" required> <br>
+                <label for="email" class="email">Email: </label> <input type="email" name="email" id="email" pattern="[a-zA-Z0-9._%+-]+@davnepal\.edu\.np$" required> <br>
                 <label for="role" class="role"> Role: </label> <select name="role" id="role" onchange="toggleSemesterOption()" required><br>
                     <option value="teacher">Teacher</option>
                     <option value="student">student</option>
@@ -57,14 +57,19 @@
                 $name = $_POST['name'];
                 $user = $_POST['username'];
                 $pass = md5($_POST['password']);
+                $pattern = '/^[a-zA-Z0-9._%+-]+admin+@davnepal\.edu\.np$/';
                 $email = $_POST['email'];
-                $teachersql = "INSERT INTO user (`username`,`name`,`password`,`email`,`is_admin`) VALUES('$user','$name','$pass','$email','0')";
-                $result = mysqli_query($conn, $teachersql);
-                if ($result) {
-                    //redirect to login
-                    header('location:http://localhost/4thsemProj/login/login.php');
+                if (!preg_match($pattern, $email)) {
+                    echo "<script>alert('Email must be from @davnepal.edu.np domain');</script>";
                 } else {
-                    echo "Error: " . mysqli_error($conn);
+                    $teachersql = "INSERT INTO user (`username`,`name`,`password`,`email`,`is_admin`) VALUES('$user','$name','$pass','$email','0')";
+                    $result = mysqli_query($conn, $teachersql);
+                    if ($result) {
+                        //redirect to login
+                        header('location:http://localhost/4thsemProj/login/login.php');
+                    } else {
+                        echo "Error: " . mysqli_error($conn);
+                    }
                 }
             }
         } elseif ($_POST['role'] == 'student') {
@@ -72,15 +77,20 @@
                 $name = $_POST['name'];
                 $user = $_POST['username'];
                 $pass = md5($_POST['password']);
+                $pattern = '/^[a-zA-Z0-9._%+-]+@davnepal\.edu\.np$/';
                 $email = $_POST['email'];
-                $sem = $_POST['sem'];
-                $sql = "INSERT INTO student (username,name,email,password,semester) values('$user','$name','$email','$pass','$sem')";
-                $result = mysqli_query($conn, $sql);
-                if ($result) {
-                    //redirect to login
-                    header('location:http://localhost/4thsemProj/login/login.php');
+                if (!preg_match($pattern, $email)) {
+                    echo "<script>alert('Email must be from @davnepal.edu.np domain');</script>";
                 } else {
-                    echo "Error: " . mysqli_error($conn);
+                    $sem = $_POST['sem'];
+                    $sql = "INSERT INTO student (username,name,email,password,semester) values('$user','$name','$email','$pass','$sem')";
+                    $result = mysqli_query($conn, $sql);
+                    if ($result) {
+                        //redirect to login
+                        header('location:http://localhost/4thsemProj/login/login.php');
+                    } else {
+                        echo "Error: " . mysqli_error($conn);
+                    }
                 }
             }
         }
