@@ -14,6 +14,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="../styles/register.css?v=<?php echo time(); ?>">
         <title>Document</title>
         <script>
             function toggleSemesterOption() {
@@ -27,27 +28,29 @@
     </head>
 
     <body>
-        <form action="" method="post">
-            Full Name: <input type="text" name="name" id="" required><br>
-            Username: <input type="text" name="username" id="" required><br>
-            Password: <input type="password" name="password" id="" required><br>
-            Email: <input type="email" name="email" id="" required> <br>
-            Role: <select name="role" id="role" onchange="toggleSemesterOption()" required><br>
-                <option value="teacher">Teacher</option>
-                <option value="student">student</option>
-            </select>
-            Semester : <select name="sem" id="sem" disabled><br>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-            </select>
-            <button type="submit" name="submit">Submit</button>
-        </form>
+        <div class="container">
+            <form action="" method="post">
+                <label for="name">Full Name:</label> <input type="text" name="name" id="name" required><br>
+                <label for="username">Username: </label> <input type="text" name="username" id="username" required><br>
+                <label for="password">Password: </label> <input type="password" name="password" id="password" required><br>
+                <label for="email" class="email">Email: </label> <input type="email" name="email" id="email" required> <br>
+                <label for="role" class="role"> Role: </label> <select name="role" id="role" onchange="toggleSemesterOption()" required><br>
+                    <option value="teacher">Teacher</option>
+                    <option value="student">student</option>
+                </select> <br><br>
+                <label for="sem" class="sem">Semester : </label> <select name="sem" id="sem" disabled><br>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select> <br><br>
+                <button type="submit" name="submit">Submit</button>
+            </form>
+        </div>
         <?php
         if ($_POST['role'] == 'teacher') {
             if (isset($_POST['submit'])) {

@@ -10,107 +10,111 @@
 
 
 
-<?php
-include '../database/dbconnect.php';
-session_start();
-$id = $_SESSION['id'];
-$is_admin = $_SESSION['is_admin'];
-if ($id) {
-    if ($_SESSION['is_admin'] == '1') {
-        $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0";
-        $commentcount = "SELECT COUNT(is_verified) as count FROM resource_comment WHERE is_verified = 0"; // Corrected SQL query
-    } else {
-        $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0 AND id = $id";
-    }
-    $res1 = mysqli_query($conn, $countsql);
-    if ($res1) {
-        $row = mysqli_fetch_assoc($res1);
-        $count = $row['count'];
-    } else {
-        echo "Error: " . mysqli_error($conn);
-    }
-
-    // Move this part inside the if condition
-    if ($is_admin == '1') {
-        $res2 = mysqli_query($conn, $commentcount);
-        if ($res2) {
-            $row = mysqli_fetch_assoc($res2);
-            $countcmt = $row['count'];
+    <?php
+    include '../database/dbconnect.php';
+    session_start();
+    $id = $_SESSION['id'];
+    $is_admin = $_SESSION['is_admin'];
+    if ($id) {
+        if ($_SESSION['is_admin'] == '1') {
+            $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0";
+            $commentcount = "SELECT COUNT(is_verified) as count FROM resource_comment WHERE is_verified = 0"; // Corrected SQL query
+        } else {
+            $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0 AND id = $id";
+        }
+        $res1 = mysqli_query($conn, $countsql);
+        if ($res1) {
+            $row = mysqli_fetch_assoc($res1);
+            $count = $row['count'];
         } else {
             echo "Error: " . mysqli_error($conn);
         }
+
+        // Move this part inside the if condition
+        if ($is_admin == '1') {
+            $res2 = mysqli_query($conn, $commentcount);
+            if ($res2) {
+                $row = mysqli_fetch_assoc($res2);
+                $countcmt = $row['count'];
+            } else {
+                echo "Error: " . mysqli_error($conn);
+            }
+        }
     }
-}
 
-?>
-<nav>
-
-    <a href="../pages/display.php">
-        <div>
-            Academia Reads
-        </div>
-    </a>
-    <?php
-    if (!isset($_SESSION['is_admin'])) {
-        //Is Student
-    } else {
-        // Is admin
     ?>
-        <a href="http://localhost/4thsemProj/crud/addpdf.php">
-            <div class="left">
-                Add pdf
+    <nav>
+
+        <a href="../pages/display.php">
+            <div>
+                Academia Reads
             </div>
         </a>
-    <?php
-    }
-    ?>
-    <?php
-    if (isset($_SESSION['is_admin'])) {
-
-        if ($is_admin == '1') {
-    ?>
-            <a href="../admin/adminverify.php">
-                <div class="count">
-                    Verification<sup><?php echo $count ?></sup>
-                </div>
-            </a>
-            <a href="../admin/verifycomment.php">
-                <div>
-                    Comments Verify<sup><?php echo $countcmt?></sup>
-                </div>
-            </a>
-
         <?php
+        if (!isset($_SESSION['is_admin'])) {
+            //Is Student
         } else {
-
+            // Is admin
         ?>
-            <a href="../verification/verify.php">
-                <div class="count">
-                    Verification<sup><?php echo $count ?></sup>
+            <a href="http://localhost/4thsemProj/crud/addpdf.php">
+                <div class="left">
+                    Add pdf
                 </div>
             </a>
         <?php
         }
-    }
-    if ($is_admin == NULL) {
         ?>
-        <a href="../profile/profile.php">
-            <div>
-                Profile
+        <?php
+        if (isset($_SESSION['is_admin'])) {
+
+            if ($is_admin == '1') {
+        ?>
+                <a href="../admin/adminverify.php">
+                    <div class="count">
+                        Verification<sup><?php echo $count ?></sup>
+                    </div>
+                </a>
+                <a href="../admin/verifycomment.php">
+                    <div>
+                        Comments Verify<sup><?php echo $countcmt ?></sup>
+                    </div>
+                </a>
+                <a href="../pages/upgrade.php">
+                    <div class="">
+                        Upgrade Students
+                    </div>
+                </a>
+            <?php
+            } else {
+
+            ?>
+                <a href="../verification/verify.php">
+                    <div class="count">
+                        Verification<sup><?php echo $count ?></sup>
+                    </div>
+                </a>
+            <?php
+            }
+        }
+        if ($is_admin == NULL) {
+            ?>
+            <a href="../profile/profile.php">
+                <div>
+                    Profile
+                </div>
+            </a>
+        <?php
+        } else if ($is_admin == '1' || $is_admin == '0') {
+        ?>
+            <a href="../profile/adminprofile.php">
+                <div>Profile</div>
+            </a>
+        <?php
+        }
+        ?>
+        <a href="../login/logout.php" onclick="return confirmLogout();">
+            <div class="left">
+                Log out
             </div>
         </a>
-    <?php
-    } else if ($is_admin == '1' || $is_admin == '0') {
-    ?>
-        <a href="../profile/adminprofile.php">
-            <div>Profile</div>
-        </a>
-    <?php
-    }
-    ?>
-    <a href="../login/logout.php" onclick="return confirmLogout();">
-        <div class="left">
-            Log out
-        </div>
-    </a>
-</nav>
+    </nav>

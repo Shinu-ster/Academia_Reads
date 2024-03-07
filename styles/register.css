@@ -1,0 +1,28 @@
+.container {
+  margin: 10%;
+  margin-left: 40%;
+}
+input {
+  margin: 10px;
+  width: 190px;
+  padding-left: 10px;
+  padding-top: 10px;
+  border: none;
+  background-color: #329fdf;
+}
+label.email {
+  margin-right: 30px;
+}
+#sem {
+  margin-left: 15px;
+}
+#role {
+  margin-left: 45px;
+}
+form {
+  width: 720px;
+  margin: 0 auto;
+  padding: 2px;
+  padding-top: 2px;
+  padding-bottom: 60px;
+}
