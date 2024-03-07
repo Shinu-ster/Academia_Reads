@@ -3,6 +3,7 @@ include '../database/dbconnect.php';
 session_start();
 $profile = $_SESSION['id'];
 $is_admin = $_SESSION['is_admin'];
+$semester = $_SESSION['sem'];
 if ($profile == true) {
     //allow to use this page only if session exists
     // echo "session exists";
@@ -34,7 +35,11 @@ if ($profile == true) {
     ?>
     <div class="container">
         <?php
-        $sql = "SELECT * FROM pdf WHERE is_verify = '1' ";
+        if ($semester) {
+            $sql = "SELECT * FROM pdf WHERE is_verify = '1' and semester = $semester";
+        }else{
+            $sql = "SELECT * FROM pdf WHERE is_verify = '1'";
+        }
         $result = mysqli_query($conn, $sql);
         $num = mysqli_num_rows($result);
         if ($num > 0) {
