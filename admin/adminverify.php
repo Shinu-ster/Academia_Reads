@@ -6,7 +6,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     $profile = $_SESSION['id'];
     // Allow to use this page only if the session exists
 } else {
-    header('location:http://localhost/4thsemProj/login/login.php');
+    header('location:http://localhost/4thsemProj/authentication/login.php');
     exit; // Add exit after the header to stop script execution
 }
 if ($_SESSION['is_admin'] == 1) {

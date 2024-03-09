@@ -7,7 +7,7 @@ if ($profile == true) {
     //allow to use this page only if session exists
     // echo "session exists";
 } else {
-    header('location:http://localhost/4thsemProj/login/login.php');
+    header('location:http://localhost/4thsemProj/authentication/login.php');
 }
 $getlocation = "SELECT * FROM pdf where f_id = $readid";
 $res = mysqli_query($conn, $getlocation);

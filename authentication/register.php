@@ -66,7 +66,7 @@
                     $result = mysqli_query($conn, $teachersql);
                     if ($result) {
                         //redirect to login
-                        header('location:http://localhost/4thsemProj/login/login.php');
+                        header('location:http://localhost/4thsemProj/authentication/login.php');
                     } else {
                         echo "Error: " . mysqli_error($conn);
                     }
@@ -87,7 +87,7 @@
                     $result = mysqli_query($conn, $sql);
                     if ($result) {
                         //redirect to login
-                        header('location:http://localhost/4thsemProj/login/login.php');
+                        header('location:http://localhost/4thsemProj/authentication/login.php');
                     } else {
                         echo "Error: " . mysqli_error($conn);
                     }

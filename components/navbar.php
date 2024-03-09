@@ -112,7 +112,7 @@
         <?php
         }
         ?>
-        <a href="../login/logout.php" onclick="return confirmLogout();">
+        <a href="../authentication/logout.php" onclick="return confirmLogout();">
             <div class="left">
                 Log out
             </div>

@@ -7,7 +7,7 @@ if ($profile == true) {
     // Allow to use this page only if session exists
     // echo "session exists";
 } else {
-    header('location:http://localhost/4thsemProj/login/login.php');
+    header('location:http://localhost/4thsemProj/authentication/login.php');
     exit(); // Add an exit to stop further execution
 }
 
