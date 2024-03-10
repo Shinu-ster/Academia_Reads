@@ -29,7 +29,7 @@
 
     <body>
         <div class="container">
-            <form action="" method="post">
+            <form action="registerFunc.php" method="post">
                 <label for="name">Full Name:</label> <input type="text" name="name" id="name" required><br>
                 <label for="username">Username: </label> <input type="text" name="username" id="username" required><br>
                 <label for="password">Password: </label> <input type="password" name="password" id="password" required><br>
@@ -51,52 +51,6 @@
                 <button type="submit" name="submit">Submit</button>
             </form>
         </div>
-        <?php
-        if ($_POST['role'] == 'teacher') {
-            if (isset($_POST['submit'])) {
-                $name = $_POST['name'];
-                $user = $_POST['username'];
-                $pass = md5($_POST['password']);
-                $pattern = '/^[a-zA-Z0-9._%+-]+admin+@davnepal\.edu\.np$/';
-                $email = $_POST['email'];
-                if (!preg_match($pattern, $email)) {
-                    echo "<script>alert('Email must be from @davnepal.edu.np domain');</script>";
-                } else {
-                    $teachersql = "INSERT INTO user (`username`,`name`,`password`,`email`,`is_admin`) VALUES('$user','$name','$pass','$email','0')";
-                    $result = mysqli_query($conn, $teachersql);
-                    if ($result) {
-                        //redirect to login
-                        header('location:http://localhost/4thsemProj/authentication/login.php');
-                    } else {
-                        echo "Error: " . mysqli_error($conn);
-                    }
-                }
-            }
-        } elseif ($_POST['role'] == 'student') {
-            if (isset($_POST['submit'])) {
-                $name = $_POST['name'];
-                $user = $_POST['username'];
-                $pass = md5($_POST['password']);
-                $pattern = '/^[a-zA-Z0-9._%+-]+@davnepal\.edu\.np$/';
-                $email = $_POST['email'];
-                if (!preg_match($pattern, $email)) {
-                    echo "<script>alert('Email must be from @davnepal.edu.np domain');</script>";
-                } else {
-                    $sem = $_POST['sem'];
-                    $sql = "INSERT INTO student (username,name,email,password,semester) values('$user','$name','$email','$pass','$sem')";
-                    $result = mysqli_query($conn, $sql);
-                    if ($result) {
-                        //redirect to login
-                        header('location:http://localhost/4thsemProj/authentication/login.php');
-                    } else {
-                        echo "Error: " . mysqli_error($conn);
-                    }
-                }
-            }
-        }
-
-
-        ?>
     </body>
 
     </html>

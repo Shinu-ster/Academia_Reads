@@ -18,7 +18,7 @@
     if ($id) {
         if ($_SESSION['is_admin'] == '1') {
             $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0";
-            $commentcount = "SELECT COUNT(is_verified) as count FROM resource_comment WHERE is_verified = 0"; // Corrected SQL query
+            $commentcount = "SELECT COUNT(is_verified) as count FROM resource_comment WHERE is_verified = 0";
         } else {
             $countsql = "SELECT COUNT(is_verify) AS count FROM pdf WHERE is_verify = 0 AND id = $id";
         }
