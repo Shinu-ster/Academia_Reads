@@ -53,7 +53,7 @@ if ($profile == true) {
                     <button type="submit" name="upgrade" value="<?php echo $firstid ?>">Upgrade Semester</button>
                 </td>
                 <td>
-                    <?php
+                    <a href="../viewStudent/viewstudent.php"><?php
                     $secondsql = "SELECT * FROM student where semester = 2";
                     $res = mysqli_query($conn, $secondsql);
                     if ($res) {
@@ -63,7 +63,7 @@ if ($profile == true) {
                             echo '</br>';
                         }
                     }
-                    ?>
+                    ?></a>
                     <button type="submit" name="upgrade" value="<?php echo $secondid ?>">Upgrade Semester</button>
                 </td>
                 <td>
