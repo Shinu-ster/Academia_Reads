@@ -18,6 +18,7 @@ if ($profile == true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../styles/table.css?v=<?php echo time(); ?>">
     <title>Document</title>
 </head>
 
@@ -38,46 +39,58 @@ if ($profile == true) {
         </tr>
         <tr>
             <form method="POST">
-                <td><?php
-                    $firstSemsql = "SELECT * FROM student where semester = 1";
-                    $res = mysqli_query($conn, $firstSemsql);
+                <td>
+                    <a href="../viewStudent/viewstudent.php">
+                    <?php
+                    $firstsql = "SELECT * FROM student where semester = 1";
+                    $res = mysqli_query($conn, $firstsql);
                     if ($res) {
                         while ($row = mysqli_fetch_assoc($res)) {
-                            $firstid = $row['semester'];
-                            echo $row['name'];
-                            echo '</br>';
+                            $firstid = $row['semester']; ?>
+                            <input type="checkbox" name="upgradeStudent" id="">
+                            <a href="../viewStudent/viewstudent.php?id=<?php echo $row['reg_no'] ?>">
+                                <?php echo $row['name'];
+                                echo '</br>' ?>
+                        <?php
                         }
                     }
-                    ?>
+                        ?></a>
                     <br>
                     <button type="submit" name="upgrade" value="<?php echo $firstid ?>">Upgrade Semester</button>
                 </td>
                 <td>
-                    <a href="../viewStudent/viewstudent.php"><?php
+                <?php
                     $secondsql = "SELECT * FROM student where semester = 2";
                     $res = mysqli_query($conn, $secondsql);
                     if ($res) {
                         while ($row = mysqli_fetch_assoc($res)) {
-                            $secondid = $row['semester'];
-                            echo $row['name'];
-                            echo '</br>';
+                            $secondid = $row['semester']; ?>
+                            <input type="checkbox" name="upgradeStudent" id="">
+                            <a href="../viewStudent/viewstudent.php?id=<?php echo $row['reg_no'] ?>">
+                                <?php echo $row['name'];
+                                echo '</br>' ?>
+                        <?php
                         }
                     }
-                    ?></a>
+                        ?></a>
                     <button type="submit" name="upgrade" value="<?php echo $secondid ?>">Upgrade Semester</button>
                 </td>
                 <td>
-                    <?php
-                    $thirdsql = "SELECT * FROM student where semester = 3";
-                    $res = mysqli_query($conn, $thirdsql);
+                <?php
+                    $thirdsem = "SELECT * FROM student where semester = 3";
+                    $res = mysqli_query($conn, $thirdsem);
                     if ($res) {
                         while ($row = mysqli_fetch_assoc($res)) {
-                            $thirdid = $row['semester'];
-                            echo $row['name'];
-                            echo '</br>';
+                            $thirdid = $row['semester']; ?>
+                            <input type="checkbox" name="upgradeStudent" id="">
+                            <a href="../viewStudent/viewstudent.php?id=<?php echo $row['reg_no'] ?>">
+                                <?php echo $row['name'];
+                                echo '</br>' ?>
+                        <?php
                         }
                     }
-                    ?><button type="submit" name="upgrade" value="<?php echo $thirdid ?>">Upgrade Semester</button>
+                        ?></a>
+                    <button type="submit" name="upgrade" value="<?php echo $thirdid ?>">Upgrade Semester</button>
                 </td>
                 <td>
                     <?php
@@ -85,65 +98,83 @@ if ($profile == true) {
                     $res = mysqli_query($conn, $fourthsql);
                     if ($res) {
                         while ($row = mysqli_fetch_assoc($res)) {
-                            $fourthid = $row['semester'];
-                            echo $row['name'];
-                            echo '</br>';
+                            $fourthid = $row['semester']; ?>
+                            <input type="checkbox" name="upgradeStudent" id="">
+                            <a href="../viewStudent/viewstudent.php?id=<?php echo $row['reg_no'] ?>">
+                                <?php echo $row['name'];
+                                echo '</br>' ?>
+                        <?php
                         }
                     }
-                    ?><button type="submit" name="upgrade" value="<?php echo $fourthid ?>">Upgrade Semester</button>
+                        ?></a>
+                            <button type="submit" name="upgrade" value="<?php echo $fourthid ?>">Upgrade Semester</button>
                 </td>
                 <td>
-                    <?php
-                    $fifthsql = "SELECT * FROM student where semester = 5";
-                    $res = mysqli_query($conn, $fifthsql);
+                <?php
+                    $fifthsem = "SELECT * FROM student where semester = 5";
+                    $res = mysqli_query($conn, $fifthsem);
                     if ($res) {
                         while ($row = mysqli_fetch_assoc($res)) {
-                            $fifthid = $row['semester'];
-                            echo $row['name'];
-                            echo '</br>';
+                            $fifthid = $row['semester']; ?>
+                            <input type="checkbox" name="upgradeStudent" id="">
+                            <a href="../viewStudent/viewstudent.php?id=<?php echo $row['reg_no'] ?>">
+                                <?php echo $row['name'];
+                                echo '</br>' ?>
+                        <?php
                         }
                     }
-                    ?><button type="submit" name="upgrade" value="<?php echo $fifthid ?>">Upgrade Semester</button>
+                        ?></a>
+                    <button type="submit" name="upgrade" value="<?php echo $fifthid ?>">Upgrade Semester</button>
                 </td>
                 <td>
-                    <?php
-                    $sixthsql = "SELECT * FROM student where semester = 6";
-                    $res = mysqli_query($conn, $sixthsql);
+                <?php
+                    $Sixthsql = "SELECT * FROM student where semester = 6";
+                    $res = mysqli_query($conn, $Sixthsql);
                     if ($res) {
                         while ($row = mysqli_fetch_assoc($res)) {
-                            $sixthid = $row['semester'];
-                            echo $row['name'];
-                            echo '</br>';
+                            $sixthid = $row['semester']; ?>
+                            <input type="checkbox" name="upgradeStudent" id="">
+                            <a href="../viewStudent/viewstudent.php?id=<?php echo $row['reg_no'] ?>">
+                                <?php echo $row['name'];
+                                echo '</br>' ?>
+                        <?php
                         }
                     }
-                    ?>
-                    <button type="submit" name="upgrade" value="<?php echo $sixthid ?>">Upgrade Semester</button>
+                        ?></a><button type="submit" name="upgrade" value="<?php echo $sixthid ?>">Upgrade Semester</button>
                 </td>
                 <td>
-                    <?php
+                <?php
                     $seventhsql = "SELECT * FROM student where semester = 7";
                     $res = mysqli_query($conn, $seventhsql);
                     if ($res) {
                         while ($row = mysqli_fetch_assoc($res)) {
-                            $seventhid = $row['semester'];
-                            echo $row['name'];
-                            echo '</br>';
+                            $seventhid = $row['semester']; ?>
+                            <input type="checkbox" name="upgradeStudent" id="">
+                            <a href="../viewStudent/viewstudent.php?id=<?php echo $row['reg_no'] ?>">
+                                <?php echo $row['name'];
+                                echo '</br>' ?>
+                        <?php
                         }
                     }
-                    ?><button type="submit" name="upgrade" value="<?php echo $seventhid ?>">Upgrade Semester</button>
+                        ?></a>
+                    <button type="submit" name="upgrade" value="<?php echo $seventhid ?>">Upgrade Semester</button>
                 </td>
                 <td>
-                    <?php
-                    $eightsql = "SELECT * FROM student where semester = 8";
-                    $res = mysqli_query($conn, $eightsql);
+                <?php
+                    $eighthsql = "SELECT * FROM student where semester = 8";
+                    $res = mysqli_query($conn, $eighthsql);
                     if ($res) {
                         while ($row = mysqli_fetch_assoc($res)) {
-                            $eightid = $row['semester'];
-                            echo $row['name'];
-                            echo '</br>';
+                            $eightid = $row['semester']; ?>
+                            <input type="checkbox" name="upgradeStudent" id="">
+                            <a href="../viewStudent/viewstudent.php?id=<?php echo $row['reg_no'] ?>">
+                                <?php echo $row['name'];
+                                echo '</br>' ?>
+                        <?php
                         }
                     }
-                    ?><button type="submit" name="upgrade" value="<?php echo $eightid ?>">Upgrade Semester</button>
+                        ?></a>
+                    <button type="submit" name="upgrade" value="<?php echo $eightid ?>">Upgrade Semester</button>
                 </td>
             </form>
         </tr>
@@ -153,10 +184,10 @@ if ($profile == true) {
         $id = $_POST['upgrade'];
         echo $id + 1;
         $upgradesemester = "UPDATE student set semester = $id + 1 where semester = $id";
-        $response = mysqli_query($conn,$upgradesemester);
+        $response = mysqli_query($conn, $upgradesemester);
         if ($response) {
             echo "done";
-        }else{
+        } else {
             echo "Something is wrong";
         }
     }

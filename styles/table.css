@@ -1,21 +1,23 @@
 table {
-    border-collapse: collapse;
-    width: 80%;
+  border-collapse: collapse;
+  width: 80%;
+  margin: 20px;
 }
 
-th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
 }
 
 .description {
-    max-width: 100px; /* Set the maximum width you want */
-    /* white-space: nowrap; */
-    /* overflow: hidden; */
-    /* text-overflow: ellipsis; */
+  max-width: 100px; /* Set the maximum width you want */
+  /* white-space: nowrap; */
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
 }
 
-td button{
-    margin:2px;
+td button {
+  margin: 2px;
 }

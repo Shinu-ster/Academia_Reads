@@ -17,11 +17,11 @@ if (isset($_POST['verify'])) {
             $row = mysqli_fetch_assoc($response);
             $fetchedotp = $row['otp'];
             $testtime = $row['signup_time'];
-            echo $testtime . '</br>';
             $fetchedSignupTime = strtotime($row['signup_time']); // Convert signup time to timestamp
             $timeup = strtotime('+5 minutes', $fetchedSignupTime);
             if ($fetchedotp != $opt) {
                 echo "<script>alert('Please enter Correct otp')</script>";
+                header('Refresh:0;url=mailVerification.php?code='.$activation_code);
             } else {
                 if (time() >= $timeup) {
                     echo "<script>alert('Your time is up try again...')</script>";

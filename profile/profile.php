@@ -17,6 +17,8 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../styles/table.css?v=<?php echo time(); ?>">
+
 </head>
 
 <body>
@@ -49,11 +51,33 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
             <td><?php echo $row['semester'] ?></td>
         </tr>
         <tr>
+            <th>Registration No:</th>
+            <td><?php echo $reg_no = $row['reg_no'] == NULL && $row['is_verified'] == 0? "Not Verified": $row['reg_no']?></td>
+        </tr>
+        <tr>
             <th>Verified: </th>
             <td><?php echo $is_verify =  $row['is_verified'] == 0 ?  "Not Verified" : "Verified"; ?></td>
         </tr>
-
     </table>
+    <br>
+    <?php
+    if ($row['reg_no'] == NULL && $row['is_verified'] == 0 ) {
+        
+        if ($reg_no == "Not Verified") {
+            ?>
+            <form action="../verification/regVeriFunc.php?id=<?php echo $_SESSION['id']?>" method="post">
+            Enter your Registration No to be Verified: <br> <input type="text" name="regNo" id="">
+            <button type="submit" name="submit">Submit</button>
+        </form>
+            <?php
+        }
+    } else if($row['is_verified'] == 0 ){
+
+        echo 'Your account will be verified soon';
+    }
+    else{
+    }
+    ?>
 </body>
 
 </html>
