@@ -83,6 +83,17 @@ if ($_POST['role'] == 'teacher') {
                     exit();
                 }
                 sendEmail("intakolai@gmail.com", $email, $otp, $activation_code);
+                $selectINFO = "SELECT * FROM student where email = '$email'";
+                $res = mysqli_query($conn,$selectINFO);
+                if (mysqli_num_rows($res)>0) {
+                    $fetch = mysqli_fetch_assoc($res);
+                    $stu_id = $fetch['stu_id'];
+                }
+                $enrollSQL = "INSERT INTO semester_enroll (`sem_id`,`stu_id`,`status`) values($sem,$stu_id,'studying')";
+                if (!mysqli_query($conn,$enrollSQL)) {
+                    echo "Enrolling failed";
+                    exit();
+                }
             }
             // $sql = "INSERT INTO student (username,name,email,password,semester) values('$user','$name','$email','$pass','$sem')";
             // $result = mysqli_query($conn, $sql);

@@ -20,6 +20,14 @@ if ($profile == true) {
     <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../styles/table.css?v=<?php echo time(); ?>">
     <title>Document</title>
+    <script>
+        function approvalConfirm(){
+            return confirm("Are you sure you want to approve");
+        }
+        function denyConfirm(){
+            return confirm("Are you sure you want to deny");
+        }
+    </script>
 </head>
 
 <body>
@@ -178,6 +186,32 @@ if ($profile == true) {
                 </td>
             </form>
         </tr>
+    </table>
+    <hr>
+    <form action="../verification/approveReg.php" method="post">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Semester</th>
+            <th>Reg No</th>
+            <th>Status</th>
+        </tr>
+        <?php
+            $selectSQL = "SELECT * FROM student where reg_no IS NOT NULL AND is_verified = 0;";
+            $response = mysqli_query($conn,$selectSQL);
+            if (mysqli_num_rows($response) > 0) {
+                while ($fetch = mysqli_fetch_assoc($response)) {
+                    ?>
+                    <tr>
+                        <td><?php echo $fetch['name']?></td>
+                        <td><?php  echo $fetch['semester']?></td>
+                        <td><?php echo $fetch['reg_no']?></td>
+                        <td><button type="submit" name="submit" value=<?php echo $fetch['stu_id']?> onclick="return approvalConfirm()">Approve</button> <button type="submit" name="decline" onclick="return denyConfirm()" value="<?php echo $fetch['stu_id']?>">Decline</button></td>
+                    </tr>
+                    <?php
+                }   
+            }
+        ?></form>
     </table>
     <?php
     if (isset($_POST['upgrade'])) {
