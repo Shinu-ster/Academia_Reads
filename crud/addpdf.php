@@ -94,7 +94,7 @@
                                 <select name="genre" id="genre" onchange="selectGenre()" required>
                                     <option value="" disabled="disabled" selected>Select genre</option>
                                     <option value="course">Course book</option>
-                                    <option value="novels">Novels</option>
+                                    <option value="extra">Extra</option>
                                 </select>
                             </td>
                         <tr id="courselistContainer" style="visibility:hidden">
@@ -102,7 +102,8 @@
                                 Semester
                             </td>
                             <td>
-                                <select name="courselist" id="courselist" disabled>
+                                <select name="courselist" id="courselist">
+                                    <option value="" selected disabled>Select Semester</option>
                                     <option value="1">First</option>
                                     <option value="2">Second</option>
                                     <option value="3">Third</option>
@@ -140,22 +141,22 @@
                     } else {
                         echo "file not moved in cover";
                     }
-                    $sem = $_POST['courselist'];
                     $genre = $_POST['genre'];
-                    echo $genre;
+                    $sem = $_POST['courselist'];
                     if ($sem == NULL) {
-                        echo ("NUll");
-                    } else {
-                        echo $sem;
+                        echo "<script>alert('Page is reloading...')</script>";
+                        header("Refresh:0;url=http://localhost/4thsemProj/crud/addpdf.php");
                     }
-                    $sql = "INSERT INTO pdf (name,description,file,cover,id,upload_date,semester) VALUES ('$name','$desc','$folder','$foldercover','$profile',CURRENT_TIMESTAMP,'$sem')";
-
-                    $res = mysqli_query($conn, $sql);
-                    if ($res) {
-                        echo '<script>showApprovMsg(); window.location.href = "http://localhost/4thsemProj/pages/display.php";</script>';
-                        // header('location:http://localhost/4thsemProj/pages/display.php');
-                    } else {
-                        echo "Error: " . mysqli_error($conn);
+                    $semArr = array(1,2,3,4,5,6,7,8);
+                    if(in_array($sem,$semArr)){
+                        $sql = "INSERT INTO pdf (name,description,file,cover,id,upload_date,semester,genre) VALUES ('$name','$desc','$folder','$foldercover','$profile',CURRENT_TIMESTAMP,'$sem','$genre')";
+                        $res = mysqli_query($conn, $sql);
+                        if ($res) {
+                            echo '<script>showApprovMsg(); window.location.href = "http://localhost/4thsemProj/pages/display.php";</script>';
+                            // header('location:http://localhost/4thsemProj/pages/display.php');
+                        } else {
+                            echo "Error: " . mysqli_error($conn);
+                        }
                     }
                 }
                 ?>

@@ -106,7 +106,7 @@ if ($_SESSION['is_admin'] == 1) {
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['description']; ?></td>
                     <td>
-                        <a href="<?php echo $row['file'] ?>"><img src="<?php echo $row['cover']; ?>" alt="" srcset="" height="20px" width="20px"></a>
+                        <a href="http://localhost/4thsemProj/pages/read.php?show=<?php echo $row['f_id'] ?>"><img src="<?php echo $row['cover']; ?>" alt="" srcset="" height="20px" width="20px"></a>
                     </td>
                     <td>
                         <form action="" method="post">
