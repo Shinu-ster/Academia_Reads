@@ -46,7 +46,7 @@ if ($num == 1) {
             // Display PDF files directly using embed
             if ($file_extension === 'pdf') {
                 ?>
-                <embed src="<?php echo $file_path; ?>" type="application/pdf" width="100%" height="1000px">
+                <embed src="<?php echo $file_path;?>#toolbar=0" type="application/pdf" width="100%" height="1000px">
                 <?php
             } elseif ($file_extension === 'docx') {
                 // Convert DOCX to HTML

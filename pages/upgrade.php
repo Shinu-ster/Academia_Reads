@@ -36,6 +36,7 @@ if ($profile == true) {
     include_once '../components/navbar.php';
     ?>
     <table border="1">
+        <caption>Semester Table</caption>
         <tr>
             <th>First Semester</th>
             <th>Second Semester</th>
@@ -211,11 +212,12 @@ if ($profile == true) {
                 </td>
             </tr>
         </table>
-        <button type="submit" name="upgrade" value="<?php echo $firstid ?>">Upgrade Semester</button>
+        <button type="submit" name="upgrade"class="upgrade-btn" value="<?php echo $firstid ?>">Upgrade Semester</button>
     </form>
     <hr>
     <form action="../verification/approveReg.php" method="post">
         <table>
+            <caption>Registration Approval</caption>
             <tr>
                 <th>Name</th>
                 <th>Semester</th>

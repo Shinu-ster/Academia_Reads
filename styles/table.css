@@ -1,16 +1,47 @@
 table {
   border-collapse: collapse;
   width: 80%;
-  margin: 20px;
+  margin-left: 130px;
+  margin-top: 10px;
 }
 
-th,
+caption {
+  background-color: aliceblue;
+  padding: 8px;
+}
+
+th{
+  background-color: rgb(151, 170, 230);
+  padding: 0.7%;
+
+}
 td {
   border: 1px solid black;
   padding: 8px;
   text-align: left;
 }
-
+td a {
+  text-decoration: none;
+  color: black;
+  
+}
+hr {
+  /* padding: 2%; */
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.upgrade-btn {
+  background-color: rgb(49, 155, 226);
+  padding: 8px;
+  border: none;
+  border-radius: 20px;
+  margin-top: 2%;
+  margin-left: 130px;
+}
+.upgrade-btn:hover {
+  background-color: rgb(75, 174, 240);
+  cursor: pointer;
+}
 .description {
   max-width: 100px; /* Set the maximum width you want */
   /* white-space: nowrap; */
@@ -20,4 +51,7 @@ td {
 
 td button {
   margin: 2px;
+}
+table input[type='checkbox']{
+  margin-right: 8px;
 }
