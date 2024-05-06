@@ -3,20 +3,61 @@
   width: 100%;
   /* background-color: aqua; */
 }
-h1 {
-  margin: 25px;
-}
-table {
-  margin: 15px;
-}
-table td,
-th {
-  padding: 10px;
-}
-
 .comment {
   margin: 20px;
   background-color: thistle;
+  /* background-color: rgb(201, 198, 198); */
   width: auto;
   padding: 20px;
+}
+img{
+  margin:20px;
+  border:10px solid lightblue;
+}
+
+a p{
+  margin:20px;
+}
+
+a{
+  text-decoration: none;
+  color:black;
+  font-size: medium;
+}
+.flex-box{
+  display:flex;
+}
+
+table {
+  border-collapse: collapse;
+  width: 30%;
+  margin-left: 140px;
+  margin-top: 10px;
+  
+}
+th{
+  background-color: rgb(151, 170, 230);
+  padding: 0.2%;
+
+}
+td {
+  /* padding: 2px; */
+  text-align: left;
+}
+h1{
+  margin:20px;
+  /* font-style: unset; */
+  text-transform: uppercase;
+}
+.commentbox{
+  width: 70%;
+  margin:12px;
+  display:block;
+}
+.commentbox button{
+  padding:12px;
+  margin:12px;
+  background-color:rgb(151, 179, 230);
+  border-radius: 12px ;
+  border:none;
 }

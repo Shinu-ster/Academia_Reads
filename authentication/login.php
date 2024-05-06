@@ -21,17 +21,21 @@ if (isset($_SESSION['id'])) {
 
 <body>
     <div class="container">
+        <h1>
+            <center><b>Login</b></center>
+        </h1>
         <form action="loginFunc.php" method="post">
             <label for="username">
-                Username: <input type="text" name="username" id="username" placeholder="Enter your Username" required>
+                <input type="email" name="email" id="email" placeholder="Enter your Email" required autocomplete="off">
             </label>
             <br><br>
             <label for="password">
-                Password: <input type="password" name="password" id="password" required placeholder="Enter your Password">
+                <input type="password" name="password" id="password" required placeholder="Enter your Password" autocomplete="off">
             </label> <br> <br> <br>
             <button type="submit" name="submit">Submit</button>
         </form>
-        <a href="./register.php">Dont have an account?</a>
+        <center><a href="./register.php">Dont have an account?</a></center>
+        
     </div>
 </body>
 

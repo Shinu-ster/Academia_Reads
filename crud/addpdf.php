@@ -75,7 +75,7 @@
                                 File:
                             </td>
                             <td>
-                                <input type="file" name="file" id="" required>
+                                <input type="file" name="file" id="" accept=".doc,.docx,application/pdf" required>
                             </td>
                         </tr>
                         <tr>
@@ -83,7 +83,7 @@
                                 Cover Photo:
                             </td>
                             <td>
-                                <input type="file" name="cover" id="" required>
+                                <input type="file" name="cover" id="" accept="image/*" required>
                             </td>
                         </tr>
                         <tr>
@@ -147,8 +147,8 @@
                         echo "<script>alert('Page is reloading...')</script>";
                         header("Refresh:0;url=http://localhost/4thsemProj/crud/addpdf.php");
                     }
-                    $semArr = array(1,2,3,4,5,6,7,8);
-                    if(in_array($sem,$semArr)){
+                    $semArr = array(1, 2, 3, 4, 5, 6, 7, 8);
+                    if (in_array($sem, $semArr)) {
                         $sql = "INSERT INTO pdf (name,description,file,cover,id,upload_date,semester,genre) VALUES ('$name','$desc','$folder','$foldercover','$profile',CURRENT_TIMESTAMP,'$sem','$genre')";
                         $res = mysqli_query($conn, $sql);
                         if ($res) {

@@ -21,10 +21,23 @@ $isadmin = $_SESSION['is_admin'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../styles/view.css?v=<?php echo time(); ?>">
+    <!-- <link rel="stylesheet" href="../styles/table.css?v=<?php echo time(); ?>"> -->
+    
     <title>Document</title>
     <?php
     include_once '../components/navbar.php';
     ?>
+    <script>
+        function checkVerification() {
+            var session = <?php echo $_SESSION['is_verified']; ?>;
+            if (session === 0) {
+                alert('Your account is not verified. Visit the profile page to verify your account.');
+                return false; // Prevent the link from being followed
+            }
+            return true; // Allow the link to be followed if the account is verified
+        }
+    </script>
+
 </head>
 
 <body>
@@ -42,13 +55,14 @@ $isadmin = $_SESSION['is_admin'];
                     echo $row['name'];
                     ?>
                 </h1>
-                <a href="../pages/read.php?show='<?php echo $row['f_id']; ?>'">
+                <div class="flex-box">
+                <a href="../pages/read.php?show='<?php echo $row['f_id']; ?>'" onclick=" return checkVerification();">
                     <img src="<?php echo $row['cover'] ?>" alt="" srcset="" width="500px">
                     <p>Click here to read</p>
                 </a>
                 <table border="1">
                     <tr>
-                        <th>Added By:</th>
+                        <th>Title:</th>
                         <td><?php echo $row['name'] ?></td>
                     </tr>
                     <tr>
@@ -60,9 +74,10 @@ $isadmin = $_SESSION['is_admin'];
                         <td><?php echo $row['genre'] ?></td>
                     </tr>
                 </table>
+                </div>
                 <div class="commentbox">
                     <form action="" method="post">
-                        <textarea id="" cols="30" rows="10" placeholder="Add Comment" name="comment"></textarea>
+                        <textarea id="" cols="30" rows="10" class="commentbox" placeholder="Add Comment" name="comment"></textarea>
                         <Button type="submit" name="submit">Submit</Button>
                     </form>
                 </div>

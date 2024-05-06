@@ -1,28 +1,61 @@
+body{
+  background-color: #7567ad;
+}
 .container {
-  margin: 10%;
-  margin-left: 40%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 420px;
+  width: 250px;
+  padding: 45px;
+  background-color:#14ff149d;
+  border-radius: 12%;
 }
 input {
   margin: 10px;
-  width: 190px;
-  padding-left: 10px;
-  padding-top: 10px;
+  width: 215px;
+  padding: 10px;
+  outline: none;
   border: none;
-  background-color: #329fdf;
+  border-radius: 12px;
+  background-color: beige;
+  height:20px;
 }
-label.email {
-  margin-right: 30px;
+input:active,
+input:focus {
+  border-bottom: 2px solid black;
 }
-#sem {
-  margin-left: 15px;
+label{
+  margin:10px;
 }
-#role {
-  margin-left: 45px;
+select{
+  border:none;
+  padding:5px;
 }
-form {
-  width: 720px;
-  margin: 0 auto;
-  padding: 2px;
-  padding-top: 2px;
-  padding-bottom: 60px;
+h1{
+  /* margin:5px; */
+  font-size: 40px;  
+}
+button{
+  width: 230px;
+  margin-left:10px;
+  margin-bottom:10px;
+  
+  padding:10px;
+  background-color:#365addf6;
+  border-radius: 12px;
+  border:none;
+  color:whitesmoke;
+}
+a{
+  text-decoration: none;
+  font-weight: bold;
+  color:#fff;
+}
+::-webkit-input-placeholder {
+  text-align: center;
+}
+:-moz-placeholder {
+  text-align: center;
 }

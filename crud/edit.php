@@ -122,7 +122,7 @@ if ($uploaderid == $profile || $_SESSION['is_admin'] == 1) {
                     <tr>
                         <td>PDF</td>
                         <td>
-                            <input type="file" name="newPdf" id="">
+                            <input type="file" name="newPdf" id="" accept=".doc,.docx,application/pdf">
                         </td>
                     </tr>
                     <tr>
@@ -130,7 +130,7 @@ if ($uploaderid == $profile || $_SESSION['is_admin'] == 1) {
                             New Cover
                         </td>
                         <td>
-                            <input type="file" name="newCover" id="">
+                            <input type="file" name="newCover" id="" accept="image/*">
                         </td>
                     </tr>
                 </table>

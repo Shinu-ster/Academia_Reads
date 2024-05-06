@@ -51,8 +51,8 @@ if ($_POST['role'] == 'teacher') {
 } elseif ($_POST['role'] == 'student') {
     if (isset($_POST['submit'])) {
         require_once "../config/mailHandler.php";
-        $name = $_POST['name'];
-        $user = $_POST['username'];
+        $name = mysqli_real_escape_string($conn, $_POST['name']);
+        $user = mysqli_real_escape_string($conn, $_POST['username']);
         $pass = md5($_POST['password']);
         $pattern = '/^[a-zA-Z0-9._%+-]+@davnepal\.edu\.np$/';
         $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -69,7 +69,7 @@ if ($_POST['role'] == 'teacher') {
                 if ($status == 'active') {
                     echo "<script>alert('Email is already registered')</script>";
                 } else {
-                    $sqlUpdate = "UPDATE student SET name = '$name', password = '$pass',otp = '$otp',activation_code = '$activation_code'";
+                    $sqlUpdate = "UPDATE student SET name = '$name', password = '$pass',otp = '$otp',activation_code = '$activation_code' WHERE email = '$email'";
                     $updateResult = mysqli_query($conn, $sqlUpdate);
                     if ($updateResult) {
                         sendEmail("intakolai@gmail.com", $email, $otp, $activation_code);

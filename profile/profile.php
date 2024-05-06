@@ -61,23 +61,25 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     </table>
     <br>
     <?php
-    if ($row['reg_no'] == NULL && $row['is_verified'] == 0 ) {
-        
-        if ($reg_no == "Not Verified") {
-            ?>
-            <form action="../verification/regVeriFunc.php?id=<?php echo $_SESSION['id']?>" method="post">
-            Enter your Registration No to be Verified: <br> <input type="text" name="regNo" id="">
-            <button type="submit" name="submit">Submit</button>
+if ($row['reg_no'] == NULL && $row['is_verified'] == 0 ) {
+    
+    if ($reg_no == "Not Verified") {
+        ?>
+        <form action="../verification/regVeriFunc.php?id=<?php echo $_SESSION['id']?>" method="post" style="margin-top: 20px; padding: 10px; background-color: #f0f0f0;">
+            Enter your Registration No to be Verified: <br> 
+            <input type="text" name="regNo" id="" style="width: 200px; padding: 5px; margin-bottom: 10px;">
+            <button type="submit" name="submit" style="padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 3px; cursor: pointer;">Submit</button>
         </form>
-            <?php
-        }
-    } else if($row['is_verified'] == 0 ){
+        <?php
+    }
+} else if($row['is_verified'] == 0 ){
 
-        echo 'Your account will be verified soon';
-    }
-    else{
-    }
-    ?>
+    echo '<div style="margin-top: 20px; padding: 10px; background-color: #f0f0f0;">Your account will be verified soon</div>';
+}
+else{
+}
+?>
+
 </body>
 
 </html>

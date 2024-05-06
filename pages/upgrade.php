@@ -242,6 +242,31 @@ if ($profile == true) {
             ?>
     </form>
     </table>
+    <hr>
+    <table>
+        <caption>Approved Students</caption>
+        <tr>
+            <th>Name</th>
+            <th>Semester</th>
+            <th>Reg No</th>
+        </tr>
+        <?php
+            $selectSQL = "SELECT * FROM student where reg_no IS NOT NULL AND is_verified = 1 order by semester ASC;";
+            $response = mysqli_query($conn, $selectSQL);
+            if (mysqli_num_rows($response) > 0) {
+                while ($fetch = mysqli_fetch_assoc($response)) {
+            ?>
+                    <tr>
+                        <td><?php echo $fetch['name'] ?></td>
+                        <td><?php echo $fetch['semester'] ?></td>
+                        <td><?php echo $fetch['reg_no'] ?></td>
+                    </tr>
+            <?php
+                }
+            }
+            ?>
+    </table>
+    <br>
     <?php
 if (isset($_POST['upgrade'])) {
     if (isset($_POST['upgradeStudent'])) {

@@ -29,12 +29,13 @@
 
     <body>
         <div class="container">
+            <h1><center>Register</center></h1>
             <form action="registerFunc.php" method="post">
-                <label for="name">Full Name:</label> <input type="text" name="name" id="name" required><br>
-                <label for="username">Username: </label> <input type="text" name="username" id="username" required><br>
-                <label for="password">Password: </label> <input type="password" name="password" id="password" required><br>
-                <label for="email" class="email">Email: </label> <input type="email" name="email" id="email" pattern="[a-zA-Z0-9._%+-]+@davnepal\.edu\.np$" required> <br>
-                <label for="role" class="role"> Role: </label> <select name="role" id="role" onchange="toggleSemesterOption()" required><br>
+                <input type="text" name="name" id="name" autocomplete="off" placeholder="Enter Full name" required><br>
+                <input type="email" name="email" id="email" autocomplete="off" pattern="[a-zA-Z0-9._%+-]+@davnepal\.edu\.np$" required placeholder="Enter Email"> <br>
+                <input type="text" name="username" id="username" autocomplete="off" required placeholder="Enter Username"><br>
+                <input type="password" name="password" id="password" required  autocomplete="off" placeholder="Enter password"><br>
+                <label for="role">Select Role</label><select name="role" id="role" onchange="toggleSemesterOption()" required><br>
                     <option value="teacher">Teacher</option>
                     <option value="student">student</option>
                 </select> <br><br>
@@ -50,6 +51,7 @@
                 </select> <br><br>
                 <button type="submit" name="submit">Submit</button>
             </form>
+            <center><a href="http://localhost/4thsemProj/authentication/login.php">Already have an Account?</a></center>
         </div>
     </body>
 
