@@ -26,6 +26,7 @@ if ($profile == true) {
     <link rel="stylesheet" href="../styles/display.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
@@ -109,20 +110,14 @@ if ($profile == true) {
             }
         }
 
-        if (isset($_POST['search'])) {
-            $search = $_POST['search'];
-            echo $search;
-            $_SESSION['search'] = $search;
 
-            // echo $search;
-            header('location:http://localhost/4thsemProj/pages/search.php');
-        }
 
         ?>
 
 
     </div>
-
+<script src="../search/search.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </body>
 
 </html>

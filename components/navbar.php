@@ -43,78 +43,28 @@
     }
 
     ?>
-    <nav>
-
-        <a href="../pages/display.php">
-            <div>
-                Academia Reads
-            </div>
-        </a>
-        <?php
-        if (!isset($_SESSION['is_admin'])) {
-            //Is Student
-        } else {
-            // Is admin
-        ?>
-            <a href="http://localhost/4thsemProj/crud/addpdf.php">
-                <div class="left">
-                    Add pdf
-                </div>
-            </a>
-        <?php
-        }
-        ?>
-        <?php
-        if (isset($_SESSION['is_admin'])) {
-
-            if ($is_admin == '1') {
-        ?>
-                <a href="../admin/adminverify.php">
-                    <div class="count">
-                        Verification<sup><?php echo $count ?></sup>
-                    </div>
-                </a>
-                <a href="../admin/verifycomment.php">
-                    <div>
-                        Comments Verify<sup><?php echo $countcmt ?></sup>
-                    </div>
-                </a>
-                <a href="../pages/upgrade.php">
-                    <div class="">
-                        Upgrade Students
-                    </div>
-                </a>
-            <?php
-            } else {
-
-            ?>
-                <a href="../verification/verify.php">
-                    <div class="count">
-                        Verification<sup><?php echo $count ?></sup>
-                    </div>
-                </a>
-            <?php
-            }
-        }
-        if ($is_admin == NULL) {
-            ?>
-            <a href="../profile/profile.php">
-                <div>
-                    Profile
-                </div>
-            </a>
-        <?php
-        } else if ($is_admin == '1' || $is_admin == '0') {
-        ?>
-            <a href="../profile/adminprofile.php">
-                <div>Profile</div>
-            </a>
-        <?php
-        }
-        ?>
-        <a href="../authentication/logout.php" onclick="return confirmLogout();">
-            <div class="left">
-                Log out
-            </div>
-        </a>
-    </nav>
+   <nav>
+    <ul>
+        <li><a href="../pages/display.php">Academia Reads</a></li>
+        <?php if (!isset($_SESSION['is_admin'])): ?>
+            <!-- Is Student -->
+        <?php else: ?>
+            <!-- Is admin -->
+            <li><a href="http://localhost/4thsemProj/crud/addpdf.php">Add pdf</a></li>
+            <?php if ($is_admin == '1'): ?>
+                <li><a href="../admin/adminverify.php">Verification<sup><?php echo $count ?></sup></a></li>
+                <li><a href="../admin/verifycomment.php">Comments Verify<sup><?php echo $countcmt ?></sup></a></li>
+                <li><a href="../pages/upgrade.php">Upgrade Students</a></li>
+            <?php else: ?>
+                <li><a href="../verification/verify.php">Verification<sup><?php echo $count ?></sup></a></li>
+            <?php endif; ?>
+        <?php endif; ?>
+        <?php if ($is_admin == NULL || $is_admin == '1' || $is_admin == '0'): ?>
+            <li><a href="<?php echo ($is_admin == NULL) ? '../profile/profile.php' : '../profile/adminprofile.php'; ?>">Profile</a></li>
+        <?php endif; ?>
+        <li><a href="../authentication/logout.php" onclick="return confirmLogout();">Log out</a></li>
+    </ul>
+    <div id="searchbox">
+        <input type="search" name="" id="searchBox">
+    </div>
+</nav>

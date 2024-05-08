@@ -10,23 +10,39 @@ nav {
   position: sticky;
 }
 
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
 nav a {
   color: white;
   text-decoration: none;
-}
-
-nav div {
-  text-align: center;
-  height: 40px;
-  width: 140px;
-  line-height: 40px;
   padding: 10px;
 }
 
-nav a:not(:first-child):hover {
+nav ul li:not(:first-child):hover {
   background-color: dodgerblue;
 }
 
-.count {
-  vertical-align: middle; /* adjust the margin-top */
+
+.count sup {
+  vertical-align: top;
+}
+
+#searchbox {
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+#searchbox input[type="search"] {
+  border: none;
+  padding: 6px;
+  border-radius: 12px;
 }
