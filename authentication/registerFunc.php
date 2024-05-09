@@ -56,6 +56,8 @@ if ($_POST['role'] == 'teacher') {
         $pass = md5($_POST['password']);
         $pattern = '/^[a-zA-Z0-9._%+-]+@davnepal\.edu\.np$/';
         $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $_SESSION['regEmail'] = $email;
+        $_SESSION['regPass'] = $pass;
         if (!preg_match($pattern, $email)) {
             echo "<script>alert('Email must be from DAV domain');</script>";
             header('Refresh:0;url=register.php');
@@ -68,6 +70,7 @@ if ($_POST['role'] == 'teacher') {
                 $status = $row['status'];
                 if ($status == 'active') {
                     echo "<script>alert('Email is already registered')</script>";
+                    header('Refresh:0;url=register.php');
                 } else {
                     $sqlUpdate = "UPDATE student SET name = '$name', password = '$pass',otp = '$otp',activation_code = '$activation_code' WHERE email = '$email'";
                     $updateResult = mysqli_query($conn, $sqlUpdate);

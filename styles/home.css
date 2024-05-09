@@ -9,8 +9,32 @@ div p {
   padding-left: 15px;
 }
 .container{
-  margin:10px;
+  margin:50px;
+  /* background-color: rgba(58, 29, 223, 0.521); */
+  /* background-color: rgba(133, 114, 240, 0.9 );  */
+  background-color: rgba(137, 43, 226, 0.233);
+  border-radius: 7px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  /* height: 250px;  */
+  /* width: 200px;   */
+  padding-left: 50px;
+  margin-right: 700px;
 }
 td{
   padding:10px;
 }
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+input[type=file]::file-selector-button {
+  border: none;
+  padding: .2em .4em;
+  border-radius: .2em;
+  background-color: #a29bfe;
+}
+button:focus { outline: none; }

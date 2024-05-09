@@ -23,6 +23,20 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
             background-color: rgb(151, 170, 200, 0.1);
             padding: 0.7%;
         }
+
+        .addSem {
+            margin: 20px;
+        }
+
+        .addSem input[type='checkbox'] {
+            margin-right: 10px;
+            margin-top: 5px;
+            height: 20px;
+            width: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
     </style>
 </head>
 
@@ -32,6 +46,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     $getinfo = "SELECT * FROM user where id = '$profile'";
     $res = mysqli_query($conn, $getinfo);
     $row = mysqli_fetch_assoc($res);
+    $isTeachter = $row['is_admin'];
     ?>
     <table border="1">
         <caption>
@@ -50,6 +65,54 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
             <td><?php echo $row['email'] ?></td>
         </tr>
     </table>
+    <?php
+if ($isTeachter == 0) {
+    $getsemID = 'SELECT * FROM semester';
+    $result = mysqli_query($conn, $getsemID);
+?>
+    <br>
+    <div class="addSem">
+        <h3>Which Semester do you Teach?</h3>
+        <form action="" method="post">
+            <?php
+            while ($fetch = mysqli_fetch_assoc($result)) {
+                $sem_id = $fetch['sem_id'];
+                $teaching = false; // Set teaching flag to false by default
+                $getTeachSemId = "SELECT * FROM teacher_semester WHERE teacher_id = '$profile' AND semester_id = '$sem_id'";
+                $response = mysqli_query($conn, $getTeachSemId);
+                if (mysqli_num_rows($response) > 0) {
+                    $teaching = true; // Set teaching flag to true if the user is teaching this semester
+                }
+            ?>
+                <label>
+                    <?php echo $fetch['semester']; ?>:
+                    <input type="checkbox" name="semester[]" value="<?php echo $sem_id; ?>" <?php if ($teaching) echo 'checked'; ?>>
+                </label>
+            <?php
+            }
+            ?>
+            <button type="submit" name='submit'>Submit</button>
+        </form>
+    </div>
+<?php
+}
+if (isset($_POST['submit'])) {
+    if (isset($_POST['semester'])) {
+        $selectedSemesters = $_POST['semester'];
+        foreach ($selectedSemesters as $semester) {
+            $insertsem = "INSERT INTO teacher_semester (teacher_id, semester_id) VALUES ('$profile', '$semester')";
+            $result = mysqli_query($conn, $insertsem);
+        }
+        if ($result) {
+            echo 'Insert Successfully';
+        }
+    } else {
+        echo 'No semesters selected';
+    }
+}
+
+?>
+
 </body>
 
 </html>

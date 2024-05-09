@@ -46,7 +46,7 @@ if ($profile == true) {
         if ($num > 0) {
             while ($row = mysqli_fetch_assoc($result)) {;
 
-        ?>
+        ?> 
                 <div class="wrapper">
                     <div class="image">
                         <a href="../crud/view.php?view='<?php echo $row['f_id']; ?>'">

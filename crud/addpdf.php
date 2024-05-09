@@ -83,7 +83,7 @@
                                 Cover Photo:
                             </td>
                             <td>
-                                <input type="file" name="cover" id="" accept="image/*" required>
+                                <input type="file" class="filee" name="cover" id="" accept="image/*" required>
                             </td>
                         </tr>
                         <tr>
@@ -102,7 +102,7 @@
                                 Semester
                             </td>
                             <td>
-                                <select name="courselist" id="courselist">
+                                <select name="courselist" id="courselist" class="button-selected">
                                     <option value="" selected disabled>Select Semester</option>
                                     <option value="1">First</option>
                                     <option value="2">Second</option>

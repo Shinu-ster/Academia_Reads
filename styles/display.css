@@ -1,9 +1,13 @@
 body {
-  background-color: #f5e4e4;
+  /* background-color: #f5e4e4; */
+  background-color: #b8e6f89c;
 }
 .wrapper {
   margin: 10px;
   /* background-color: rgba(58, 29, 223, 0.521); */
+  /* background-color: rgba(133, 114, 240, 0.9 );  */
+  background-color: rgba(137, 43, 226, 0.24);
+  border-radius: 7px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -18,13 +22,16 @@ body {
 }
 
 .wrapper .title {
+  font-size: large;
+  font-weight: bold;
+  text-decoration: underline;
   margin-top: 10px;
   text-align: center;
 }
 
 .wrapper .description {
   margin-top: 10px;
-  text-align: center;
+  text-align: left;
   width: 150px;
   height: 60px;
   overflow: hidden;
@@ -40,7 +47,7 @@ body {
 }
 
 .wrapper .buttons button {
-  border-radius: 10px;
+  border-radius: 12px;
   outline: none;
   border: none;
   padding: 10px;
@@ -51,6 +58,7 @@ body {
 }
 .primary {
   background-color: #0d6dfdd3;
+  /* background-color: rgb(43, 135, 255); */
   width: 60px;
 }
 button {
@@ -62,5 +70,11 @@ button {
   text-decoration: none;
 }
 .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%  ;
+  margin-left: 50px;
+  margin-top: 20px;
+  /* background-color: rgb(208, 240, 245); */
+  max-width: 90%;
+  padding-left: 30px;
 }
