@@ -43,6 +43,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
             </tr>
 
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                <?php $isdenied = $row['is_reuploaded'];?>
                 <?php $resourceid = $row['f_id'] ?>
                 <tr>
                     <td><?php echo $row['name']; ?></td>
@@ -55,7 +56,11 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                     <td>
                         <?php
                         $status = $row['is_verify'];
-                        echo $status == 0 ? 'Pending..' : ($status == 1 ? 'Approved' : 'Unknown');
+                        if ($isdenied == '0') {
+                            echo 'Denied';
+                        }else{
+                            echo $status == 0 && $isdenied == NULL ? 'Pending..' : ($status == 1 ? 'Approved' : 'Unknown');
+                        }
                         ?>
                     </td>
                     <td>
@@ -68,10 +73,14 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                             //redirect to home page
                             $data = mysqli_fetch_assoc($res);
                             $message = $data['feedback'];
-                            echo $message .'</br>';
-                            echo '<a href="../crud/edit.php?edit='.$row['f_id'].'"">ReUpload</a>';
+                            if ($message != NULL && $status != '1' && $isdenied != NULL) {
+                                echo $message .'</br>';
+                                echo '<a href="../crud/edit.php?edit='.$row['f_id'].'"">ReUpload</a>';
+                            } else if ($message == NULL && $isdenied != '0'){
+                                // echo 'No feedbacks from Admin';
+                            }
                         } else {
-                            echo "No messages";
+                            echo "Waiting for Admins approval";
                         }
                         ?>
                     </td>

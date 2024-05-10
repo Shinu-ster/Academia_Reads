@@ -188,7 +188,7 @@ if ($uploaderid == $profile || $_SESSION['is_admin'] == 1) {
                 echo "Error: " . mysqli_error($conn);
             }
         } else {
-            $updatequery = "UPDATE `pdf` SET `name`='$name', `description`='$desc', `file`='$folder', `cover`='$foldercover', `update_date` = CURRENT_TIMESTAMP WHERE `f_id` = $f_id AND `id` = $profile";
+            $updatequery = "UPDATE `pdf` SET `name`='$name', `description`='$desc', `file`='$folder', `cover`='$foldercover', `update_date` = CURRENT_TIMESTAMP,is_reuploaded = NULL WHERE `f_id` = $f_id AND `id` = $profile";
             $result = mysqli_query($conn, $updatequery);
             if ($result) {
                 echo '<script>showMsg(); window.location.href = "http://localhost/4thsemProj/pages/display.php";</script>';

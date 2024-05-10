@@ -28,14 +28,14 @@ $isadmin = $_SESSION['is_admin'];
     include_once '../components/navbar.php';
     ?>
     <script>
-        function checkVerification() {
-            var session = <?php echo $_SESSION['is_verified']; ?>;
-            if (session === 0) {
-                alert('Your account is not verified. Visit the profile page to verify your account.');
-                return false; // Prevent the link from being followed
-            }
-            return true; // Allow the link to be followed if the account is verified
-        }
+        // function checkVerification() {
+        //     var session = <?php echo $_SESSION['is_verified']; ?>;
+        //     if (session === 0) {
+        //         alert('Your account is not verified. Visit the profile page to verify your account.');
+        //         return false; // Prevent the link from being followed
+        //     }
+        //     return true; // Allow the link to be followed if the account is verified
+        // }
     </script>
 
 </head>
@@ -126,6 +126,9 @@ $isadmin = $_SESSION['is_admin'];
     }
     session_start();
     if (isset($_POST['submit'])) {
+        if ($verified == '0') {
+            echo "<script>alert('Your Profile is not verified so your comment will be posted after its been verified by admin')</script>";
+        }
         $comment = mysqli_real_escape_string($conn, $_POST['comment']);
         $commentsql = "INSERT INTO resource_comment(r_id, comment, cm_date,is_verified, $cm_column) VALUES ($pdfid, '$comment', CURRENT_TIMESTAMP,$verified, $profile)";
         $result = mysqli_query($conn, $commentsql);

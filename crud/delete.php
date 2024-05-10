@@ -14,7 +14,7 @@ $query = "SELECT * FROM pdf where f_id = $delkey";
 $result = mysqli_query($conn, $query);
 $row =  mysqli_fetch_assoc($result);
 
-if ($_SESSION['is_admin'] == '1' && $row['id'] == $profile) {
+if ($_SESSION['is_admin'] == '1' || $row['id'] == $profile) {
     // Delete the file from the 'pdf' folder
     $pdfFilePath = $row['file'];
     if (file_exists($pdfFilePath)) {
