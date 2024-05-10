@@ -37,6 +37,7 @@ $isadmin = $_SESSION['is_admin'];
         //     return true; // Allow the link to be followed if the account is verified
         // }
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
@@ -138,6 +139,30 @@ $isadmin = $_SESSION['is_admin'];
         }
     }
     ?>
+    <script>
+    var pdfid = <?php echo json_encode($pdfid); ?>;
+    function fetchData() {
+        $.ajax({
+            url: 'fetchComments.php?view=' + pdfid,
+            method: 'GET',
+            success: (response) => {
+                // Clear existing comments before appending new ones
+                $('.comments-container').empty();
+                // Append new comments
+                $('.comments-container').append(response);
+            },
+            error: (error) => {
+                console.error('Error Occurred while fetching:', error);
+            }
+        });
+    }
+    console.log('hello');
+    fetchData();
+    setInterval(fetchData, 5000);
+</script>
+
+
+
 </body>
 
 </html>
