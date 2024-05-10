@@ -1,4 +1,5 @@
 /cover
 /pdfs
 /config/mailHandler.php
-/vendor
+/vendor/*
+/vendor/phpoffice
