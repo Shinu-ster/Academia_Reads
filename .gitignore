@@ -3,3 +3,4 @@
 /config/mailHandler.php
 /vendor/*
 /vendor/phpoffice
+/config/mailHandler.php
