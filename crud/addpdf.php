@@ -24,7 +24,13 @@
             <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
             <script>
                 function showApprovMsg() {
-                    alert("Added Succesfully Waiting for Admin approvals")
+                    <?php if ($verifyResource == '1') {
+                        echo "<script> return alert('Added Succesfully Waiting for Admin approvals') </script>";
+                    } else if ($verifyResource == '0') {
+                        echo "<script> return alert('Added Succesfully Waiting for Admin approvals') </script>";
+                    }
+                    ?>
+                    
 
                 }
 
@@ -120,7 +126,11 @@
                     <button type="submit" name="submit">Submit</button>
                 </form>
                 <?php
-
+                if ($is_admin == '1') {
+                    $verifyResource = '1';
+                } else {
+                    $verifyResource = '0';
+                }
                 if (isset($_POST['submit'])) {
                     $name = $_POST['name'];
                     $desc = mysqli_real_escape_string($conn, $_POST['desc']);
@@ -149,10 +159,14 @@
                     }
                     $semArr = array(1, 2, 3, 4, 5, 6, 7, 8);
                     if (in_array($sem, $semArr)) {
-                        $sql = "INSERT INTO pdf (name,description,file,cover,id,upload_date,semester,genre) VALUES ('$name','$desc','$folder','$foldercover','$profile',CURRENT_TIMESTAMP,'$sem','$genre')";
+                        $sql = "INSERT INTO pdf (name,description,file,cover,id,upload_date,semester,genre,is_verify) VALUES ('$name','$desc','$folder','$foldercover','$profile',CURRENT_TIMESTAMP,'$sem','$genre','$verifyResource')";
                         $res = mysqli_query($conn, $sql);
                         if ($res) {
+                            if ($verifyResource == '0') {
                             echo '<script>showApprovMsg(); window.location.href = "http://localhost/4thsemProj/pages/display.php";</script>';
+                            } else if ($verifyResource == '1'){
+                            echo '<script>showApprovMsg(); window.location.href = "http://localhost/4thsemProj/pages/display.php";</script>';
+                            }
                             // header('location:http://localhost/4thsemProj/pages/display.php');
                         } else {
                             echo "Error: " . mysqli_error($conn);
