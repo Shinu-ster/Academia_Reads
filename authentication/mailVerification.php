@@ -1,4 +1,5 @@
 <?php
+session_start();
     if (!isset($_GET['code'])) {
         header('Location:login.php');
     }
@@ -25,7 +26,7 @@
     <div class="opt-card">
             <form action="" method="post" id="otpForm">
                 <h1>OTP</h1>
-                <p>Code has been sent to ****bazz@gmail.com</p>
+                <p>Code has been sent to <span id="showMail"></span></p>
                 <div class="otp-card-inputs">
                     <input type="text" name="" id="" maxlength="1" autofocus>
                     <input type="text" name="" id="" maxlength="1">
@@ -40,5 +41,11 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script src="otphandler.js"></script>
+        <script>
+            var email = "<?php echo $_SESSION['regEmail'];?>";
+            email = "*" + "*"+"*" + "*"+email.slice(2);
+            document.getElementById('showMail').innerHTML = email;
+            // console.log(email);
+        </script>
 </body>
 </html>

@@ -105,7 +105,7 @@ if ($uploaderid == $profile || $_SESSION['is_admin'] == 1) {
                     <caption>New file</caption>
                     <tr>
                         <td>
-                            Name
+                            Name:
                         </td>
                         <td>
                             <input type="text" name="newName" id="" value='<?php echo $row1['name'] ?>'>
@@ -113,21 +113,21 @@ if ($uploaderid == $profile || $_SESSION['is_admin'] == 1) {
                     </tr>
                     <tr>
                         <td>
-                            Description
+                            Description:
                         </td>
                         <td>
                             <textarea name="newDesc" id="" cols="30" rows="10"><?php echo $row1['description'] ?></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td>PDF</td>
+                        <td>PDF:</td>
                         <td>
                             <input type="file" name="newPdf" id="" accept=".doc,.docx,application/pdf">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            New Cover
+                            New Cover:
                         </td>
                         <td>
                             <input type="file" name="newCover" id="" accept="image/*">

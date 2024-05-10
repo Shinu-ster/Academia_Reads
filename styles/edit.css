@@ -1,14 +1,53 @@
-.container{
-    /* background-color: cadetblue; */
-    display:flex;
-    padding:10px;
-    gap:10px;
+.container {
+  background-color: #b8e6f89c;
+  display: flex;
+  padding: 10px;
+  gap: 10px;
 }
-.container div{
-    background-color: cornflowerblue;
-    width: 700px;
+.container div {
+  /* border: 1px solid black; */
+  background-color: rgba(100, 148, 237, 0.274);
+  width: 700px;
 }
-table{
-   padding:20px; 
-   border-spacing: 30px;
+table {
+  padding: 20px;
+  border-spacing: 30px;
+  /* border: 1px solid black; */
+}
+table td {
+  color: black;
+  font-size: medium;
+}
+table caption {
+  font-size: large;
+  font-weight: 500;
+  text-decoration: underline;
+  margin-top: 7px;
+  margin-left: 150px;
+  margin-bottom: 7px;
+}
+
+p {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+button {
+  margin-top: 5px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(54, 160, 54);
+  margin-left: 20px;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+input[type="file"]::file-selector-button {
+  border: none;
+  padding: 0.2em 0.4em;
+  border-radius: 0.2em;
+  background-color: #a29bfe;
 }

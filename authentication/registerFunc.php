@@ -15,6 +15,8 @@ if ($_POST['role'] == 'teacher') {
         // $pattern = '/^[a-zA-Z0-9._%+-]+admin+@davnepal\.edu\.np$/';
         $pattern = '/^[a-zA-Z0-9._%+-]+@gmail\.com$/';
         $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $_SESSION['regEmail'] = $email;
+        $_SESSION['regPass'] = $pass;
         if (!preg_match($pattern, $email)) {
             echo "<script>alert('Email must be from DAV domain');</script>";
             header('Refresh:0;url=register.php');
@@ -26,6 +28,7 @@ if ($_POST['role'] == 'teacher') {
                 $status = $row['status'];
                 if ($status == 'active') {
                     echo "<script>alert('Email is already registered')</script>";
+                    header('Refresh:0;url=register.php');
                 } else {
                     // Update the existing teacher record
                     $sqlUpdate = "UPDATE user 
@@ -87,13 +90,13 @@ if ($_POST['role'] == 'teacher') {
                 }
                 sendEmail("intakolai@gmail.com", $email, $otp, $activation_code);
                 $selectINFO = "SELECT * FROM student where email = '$email'";
-                $res = mysqli_query($conn,$selectINFO);
-                if (mysqli_num_rows($res)>0) {
+                $res = mysqli_query($conn, $selectINFO);
+                if (mysqli_num_rows($res) > 0) {
                     $fetch = mysqli_fetch_assoc($res);
                     $stu_id = $fetch['stu_id'];
                 }
                 $enrollSQL = "INSERT INTO semester_enroll (`sem_id`,`stu_id`,`status`) values($sem,$stu_id,'studying')";
-                if (!mysqli_query($conn,$enrollSQL)) {
+                if (!mysqli_query($conn, $enrollSQL)) {
                     echo "Enrolling failed";
                     exit();
                 }
