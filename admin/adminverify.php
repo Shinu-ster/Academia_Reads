@@ -138,6 +138,7 @@ if (isset($_POST['approve'])) {
 
                 <th>Name</th>
                 <th>Description</th>
+                <th>Semester</th>
                 <th>Cover</th>
                 <th>Verify</th>
             </tr>
@@ -147,8 +148,9 @@ if (isset($_POST['approve'])) {
                 <tr>
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['description']; ?></td>
+                    <td><?php echo $row['semester'];?></td>
                     <td>
-                        <a href="http://localhost/4thsemProj/pages/read.php?show=<?php echo $row['f_id'] ?>"><img src="<?php echo $row['cover']; ?>" alt="" srcset="" height="20px" width="20px"></a>
+                        <a href="http://localhost/4thsemProj/pages/read.php?show=<?php echo $row['f_id'] ?>"><img src="<?php echo $row['cover']; ?>" alt="" srcset="" height="100px" width="100px"></a>
                     </td>
                     <td>
                         <form action="" method="post">

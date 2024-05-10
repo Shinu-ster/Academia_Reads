@@ -100,7 +100,6 @@
                                 <select name="genre" id="genre" onchange="selectGenre()" required>
                                     <option value="" disabled="disabled" selected>Select genre</option>
                                     <option value="course">Course book</option>
-                                    <option value="extra">Extra</option>
                                 </select>
                             </td>
                         <tr id="courselistContainer" style="visibility:hidden">

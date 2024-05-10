@@ -9,6 +9,7 @@ if ($num > 0) {
             <tr>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Semester</th>
                 <th>Cover</th>
                 <th>Verify</th>
             </tr>";
@@ -17,8 +18,9 @@ if ($num > 0) {
         <tr>
             <td>" . $row['name'] . "</td>
             <td>" . $row['description'] . "</td>
+            <td>" . $row['semester'] . "</td>
             <td>
-                <a href='http://localhost/4thsemProj/pages/read.php?show=" . $row['f_id'] . "'><img src='" . $row['cover'] . "' height='20px' width='20px'></a>
+                <a href='http://localhost/4thsemProj/pages/read.php?show=" . $row['f_id'] . "'><img src='" . $row['cover'] . "' height='100px' width='100px'></a>
             </td>
             <td>
                 <form action='' method='post'>

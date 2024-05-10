@@ -1,11 +1,9 @@
 <?php
 include '../database/dbconnect.php';
 session_start();
-if ($_SESSION['is_admin'] == 1) {
-} else {
+if ($_SESSION['is_admin'] != 1) {
     header('location:http://localhost/4thsemProj/pages/display.php');
-    // echo "Invalid access";
-    // exit();
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -18,26 +16,23 @@ if ($_SESSION['is_admin'] == 1) {
     <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../styles/table.css?v=<?php echo time(); ?>">
 
-    <?php
-    include_once '../components/navbar.php' ?>
+    <?php include_once '../components/navbar.php'; ?>
 </head>
 
 <body>
     <?php
     $joinsql = "SELECT CASE 
-    when rc.cm_by is not null then s.name
-    when rc.cm_by_admin is not null then u.name
-    end as commenter_name,
-    rc.comment,
-    r.name,rc.r_id
-    from resource_comment rc 
-    inner join 
-    pdf r on r.f_id = rc.r_id
-    left join 
-    student s on s.stu_id = rc.cm_by
-    left join 
-    user u on u.id = rc.cm_by_admin
-    where rc.is_verified = 0";
+        WHEN rc.cm_by IS NOT NULL THEN s.name
+        WHEN rc.cm_by_admin IS NOT NULL THEN u.name
+        END AS commenter_name,
+        rc.comment,
+        r.name,
+        rc.r_id
+    FROM resource_comment rc 
+    INNER JOIN pdf r ON r.f_id = rc.r_id
+    LEFT JOIN student s ON s.stu_id = rc.cm_by
+    LEFT JOIN user u ON u.id = rc.cm_by_admin
+    WHERE rc.is_verified = 0";
     $result = mysqli_query($conn, $joinsql);
     $num = mysqli_num_rows($result);
     if ($num == 0) {
@@ -55,47 +50,54 @@ if ($_SESSION['is_admin'] == 1) {
             </tr>
             <?php
             while ($row = mysqli_fetch_assoc($result)) :
-            ?><tr>
-                    <td><?php echo $row['comment']; ?></td>
-                    <td><?php echo $row['commenter_name']; ?></td> <!-- Change 'username' to 'commenter_name' -->
-                    <td><?php echo $row['name']; ?></td> <!-- Assuming 'name' corresponds to the commented resource -->
+                $comment = $row['comment'];
+                $commenter = $row['commenter_name'];
+                $name = $row['name'];
+                $r_id = $row['r_id'];
+            ?>
+                <tr>
+                    <td><?php echo $comment; ?></td>
+                    <td><?php echo $commenter; ?></td>
+                    <td><?php echo $name; ?></td>
                     <td>
                         <form method="POST">
-                            <button type="submit" name="approve" value="<?php echo $row['r_id']; ?>">Approve</button>
-                            <button type="submit" name="deny" value="<?php echo $row['r_id']; ?>">Deny</button>
+                            <button type="submit" name="approve_<?php echo $r_id; ?>" value="<?php echo $r_id; ?>">Approve</button>
+                            <button type="submit" name="deny_<?php echo $r_id; ?>" value="<?php echo $r_id; ?>">Deny</button>
                         </form>
-
                     </td>
                 </tr>
-        <?php
+            <?php
             endwhile;
         }
-        if (isset($_POST['approve'])) {
-            $id = $_POST['approve'];
-            $approvesql = "UPDATE resource_comment set is_verified = 1 where r_id = $id";
-            $approveres = mysqli_query($conn, $approvesql);
-            if ($res) {
-                echo 'Approved Comment';
-            }
-        } else {
-            // echo "Error: PDF ID not set.";
-        }
 
-        if (isset($_POST['deny'])) {
-            $id = $_POST['deny'];
-            $denysql = "UPDATE resource_comment set is_verified = 0 where r_id = $id";
-            $approveres = mysqli_query($conn, $denysql);
-            if ($res) {
-                echo 'Denied Comment';
+        // Process approval or denial based on the specific comment's r_id
+        foreach ($_POST as $key => $value) {
+            if (strpos($key, 'approve_') !== false) {
+                $id = substr($key, strlen('approve_'));
+                $approvesql = "UPDATE resource_comment SET is_verified = 1 WHERE r_id = $id AND is_verified = 0";
+                $approveres = mysqli_query($conn, $approvesql);
+                if ($approveres) {
+                    echo 'Approved Comment';
+                    header("Refresh:0"); // Refresh the page after successful approval
+                } else {
+                    echo 'Error approving comment: ' . mysqli_error($conn);
+                }
             }
-        } else {
-            // echo "Error: PDF ID not set.";
+
+            if (strpos($key, 'deny_') !== false) {
+                $id = substr($key, strlen('deny_'));
+                $denysql = "DELETE FROM resource_comment WHERE r_id = $id AND is_verified = 0";
+                $denyres = mysqli_query($conn, $denysql);
+                if ($denyres) {
+                    echo 'Denied Comment';
+                    header("Refresh:0"); // Refresh the page after successful denial
+                } else {
+                    echo 'Error denying comment: ' . mysqli_error($conn);
+                }
+            }
         }
         ?>
         </table>
-        <?php
-
-        ?>
 </body>
 
 </html>

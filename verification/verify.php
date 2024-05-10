@@ -37,6 +37,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
             <tr>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Semester</th>
                 <th>Cover</th>
                 <th>Status</th>
                 <th>Feedback</th>
@@ -48,9 +49,10 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                 <tr>
                     <td><?php echo $row['name']; ?></td>
                     <td id="description"><?php echo $row['description']; ?></td>
+                    <td><?php echo $row['semester'];?></td>
                     <td>
                         <a href="../pages/read.php?show='<?php echo $resourceid ?>'">
-                            <img src="<?php echo $row['cover']; ?>" alt="" height="20px" width="20px">
+                            <img src="<?php echo $row['cover']; ?>" alt="" height="100px" width="100px">
                         </a>
                     </td>
                     <td>

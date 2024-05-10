@@ -71,6 +71,10 @@ $isadmin = $_SESSION['is_admin'];
                             <td><?php echo $row['description'] ?></td>
                         </tr>
                         <tr>
+                            <th>Semester:</th>
+                            <td><?php echo $row['semester'] ?></td>
+                        </tr>
+                        <tr>
                             <th>Genre:</th>
                             <td><?php echo $row['genre'] ?></td>
                         </tr>
@@ -119,7 +123,7 @@ $isadmin = $_SESSION['is_admin'];
         if ($_SESSION['is_verified'] == '1') {
             $verified = '1';
         } else {
-            $verified = '0';
+            $verified = '1';
         }
     } else if ($cm_column == 'cm_by_admin'){
             $verified = '1';
@@ -156,7 +160,7 @@ $isadmin = $_SESSION['is_admin'];
             }
         });
     }
-    console.log('hello');
+
     fetchData();
     setInterval(fetchData, 5000);
 </script>

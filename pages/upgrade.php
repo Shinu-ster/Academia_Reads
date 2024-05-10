@@ -192,7 +192,7 @@ if ($profile == true) {
                 </td>
                 <td>
                     <?php
-                    $eighthsql = "SELECT * FROM student where semester = 8";
+                    $eighthsql = "SELECT * FROM student where semester = 8 and passed_out = 0";
                     $res = mysqli_query($conn, $eighthsql);
                     if ($res) {
                         while ($row = mysqli_fetch_assoc($res)) {
@@ -283,23 +283,32 @@ if (isset($_POST['upgrade'])) {
             }
 
 
-            $upgradesemester = "UPDATE student SET semester = semester + 1 WHERE stu_id = $studentId";
-            $response = mysqli_query($conn, $upgradesemester);
-            if ($response) {
-                // Update status of previous semester enrollment to "passed"
-                $updateStatus = "UPDATE semester_enroll SET status = 'passed' WHERE stu_id = $studentId AND sem_id = $nowSem";
-                $updateResponse = mysqli_query($conn, $updateStatus);
-                if (!$updateResponse) {
+            if ($nowSem == '8') {
+                $setPassout = "UPDATE student set passed_out = 1 where stu_id = '$studentId';
+                UPDATE semester_enroll SET status = 'passed' WHERE stu_id = $studentId AND sem_id = $nowSem";
+                $res = mysqli_multi_query($conn,$setPassout);
+                if ($res) {
+                    echo "<script>alert('Set Passed Out')</script>";
+                }
+            }else {
+                $upgradesemester = "UPDATE student SET semester = semester + 1 WHERE stu_id = $studentId";
+                $response = mysqli_query($conn, $upgradesemester);
+                if ($response) {
+                    // Update status of previous semester enrollment to "passed"
+                    $updateStatus = "UPDATE semester_enroll SET status = 'passed' WHERE stu_id = $studentId AND sem_id = $nowSem";
+                    $updateResponse = mysqli_query($conn, $updateStatus);
+                    if (!$updateResponse) {
+                        // Handle error or logging as needed
+                    }
+                    // Insert new enrollment record for the current semester
+                    $insertSemesterEnroll = "INSERT INTO semester_enroll (sem_id, stu_id, status) VALUES ($nowSem+1, $studentId, 'studying');";
+                    $insertResponse = mysqli_query($conn, $insertSemesterEnroll);
+                    if (!$insertResponse) {
+                        // Handle error or logging as needed
+                    }
+                } else {
                     // Handle error or logging as needed
                 }
-                // Insert new enrollment record for the current semester
-                $insertSemesterEnroll = "INSERT INTO semester_enroll (sem_id, stu_id, status) VALUES ($nowSem+1, $studentId, 'studying')";
-                $insertResponse = mysqli_query($conn, $insertSemesterEnroll);
-                if (!$insertResponse) {
-                    // Handle error or logging as needed
-                }
-            } else {
-                // Handle error or logging as needed
             }
         }
         }

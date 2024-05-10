@@ -1,61 +1,56 @@
 body{
-  background-color: #7567ad;
+  background-image: url('../assets/purplebg.jpg');
+  background-size: cover;
+  height:100vh;
+  font-size: large;
 }
 .container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 420px;
-  width: 250px;
-  padding: 45px;
-  background-color:#14ff149d;
-  border-radius: 12%;
+  height: auto; /* Changed height to auto */
+  width: 300px; /* Adjusted width */
+  padding: 25px; /* Reduced padding */
+  background-color: #fff;
+  border-radius: 12px; /* Reduced border-radius for a more subtle effect */
+  text-align: center;
 }
 input {
-  margin: 10px;
-  width: 215px;
+  margin: 5px; /* Reduced margin */
+  width: 250px; /* Adjusted width */
   padding: 10px;
   outline: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 20px;
+  font-size: 16px;
+}
+button {
+  width: 100%; /* Adjusted width */
+  margin: 10px 0; /* Reduced margin */
+  padding: 10px;
+  background-color: blueviolet;
+  border-radius: 12px;
   border: none;
-  border-radius: 12px;
-  background-color: beige;
-  height:20px;
+  color: white;
 }
-input:active,
-input:focus {
-  border-bottom: 2px solid black;
+label, select {
+  margin: 5px; /* Reduced margin */
 }
-label{
-  margin:10px;
+h1 {
+  font-size: 30px; /* Adjusted font size */
+  margin: 10px 0; /* Reduced margin */
 }
-select{
-  border:none;
-  padding:5px;
+.register-link {
+  margin-top: 20px;
 }
-h1{
-  /* margin:5px; */
-  font-size: 40px;  
-}
-button{
-  width: 230px;
-  margin-left:10px;
-  margin-bottom:10px;
-  
-  padding:10px;
-  background-color:#365addf6;
-  border-radius: 12px;
-  border:none;
-  color:whitesmoke;
-}
-a{
+
+.register-link a {
+  color: #007bff;
   text-decoration: none;
-  font-weight: bold;
-  color:#fff;
 }
-::-webkit-input-placeholder {
-  text-align: center;
-}
-:-moz-placeholder {
-  text-align: center;
+
+.register-link a:hover {
+  text-decoration: underline;
 }

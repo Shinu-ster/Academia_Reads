@@ -13,29 +13,29 @@ if (isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
+    <title>Login</title>
     <link rel="stylesheet" href="../styles/login.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../styles/global.css?v=<?php echo time(); ?>">
 
-    <title>Document</title>
 </head>
 
 <body>
     <div class="container">
-        <h1>
-            <center><b>Login</b></center>
-        </h1>
+        <h1>Login</h1>
         <form action="loginFunc.php" method="post">
-            <label for="username">
-                <input type="email" name="email" id="email" placeholder="Enter your Email" required autocomplete="off">
-            </label>
-            <br><br>
-            <label for="password">
-                <input type="password" name="password" id="password" required placeholder="Enter your Password" autocomplete="off">
-            </label> <br> <br> <br>
-            <button type="submit" name="submit">Submit</button>
+            <div class="form-group">
+                <input type="email" name="email" id="email" placeholder="Email" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" id="password" required placeholder="Password" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <button type="submit" name="submit">Login</button>
+            </div>
         </form>
-        <center><a href="./register.php">Dont have an account?</a></center>
-        
+        <div class="register-link">
+            Don't have an account? <a href="./register.php">Register</a>
+        </div>
     </div>
 </body>
 

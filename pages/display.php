@@ -38,7 +38,7 @@ if ($profile == true) {
         <?php
         if ($semester) {
             $sql = "SELECT * FROM pdf WHERE is_verify = '1' and semester = $semester";
-        }else{
+        } else {
             $sql = "SELECT * FROM pdf WHERE is_verify = '1'";
         }
         $result = mysqli_query($conn, $sql);
@@ -46,7 +46,7 @@ if ($profile == true) {
         if ($num > 0) {
             while ($row = mysqli_fetch_assoc($result)) {;
 
-        ?> 
+        ?>
                 <div class="wrapper">
                     <div class="image">
                         <a href="../crud/view.php?view='<?php echo $row['f_id']; ?>'">
@@ -116,8 +116,8 @@ if ($profile == true) {
 
 
     </div>
-<script src="../search/search.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../search/search.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </body>
 
 </html>

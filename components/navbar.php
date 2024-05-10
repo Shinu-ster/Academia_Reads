@@ -53,7 +53,7 @@
             <li><a href="http://localhost/4thsemProj/crud/addpdf.php">Add pdf</a></li>
             <?php if ($is_admin == '1'): ?>
                 <li><a href="../admin/adminverify.php">Verification<sup><?php echo $count ?></sup></a></li>
-                <li><a href="../admin/verifycomment.php">Comments Verify<sup><?php echo $countcmt ?></sup></a></li>
+                <!-- <li><a href="../admin/verifycomment.php">Comments Verify<sup><?php echo $countcmt ?></sup></a></li>pp -->
                 <li><a href="../pages/upgrade.php">Upgrade Students</a></li>
             <?php else: ?>
                 <li><a href="../verification/verify.php">Verification<sup><?php echo $count ?></sup></a></li>
